@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
 
-  <title>Ehsan Etesami | Education</title>
+  <title>Ehsan Etesami | Home</title>
 
   <!-- Bootstrap core CSS -->
   <link href="/Users/ehsan/fakepath/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,17 +28,17 @@
   <link rel="shortcut icon" type="image/x-icon" href="/Users/ehsan/fakepath/assets/images/favicon.ico?">
 
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Education | Ehsan Etesami</title>
+<title>Home | Ehsan Etesami</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Education" />
+<meta property="og:title" content="Home" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada" />
 <meta property="og:description" content="Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada" />
-<link rel="canonical" href="https://etesami.github.io/education.html" />
-<meta property="og:url" content="https://etesami.github.io/education.html" />
+<link rel="canonical" href="https://etesami.github.io/index.html.bak" />
+<meta property="og:url" content="https://etesami.github.io/index.html.bak" />
 <meta property="og:site_name" content="Ehsan Etesami" />
 <script type="application/ld+json">
-{"headline":"Education","url":"https://etesami.github.io/education.html","description":"Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Home","url":"https://etesami.github.io/index.html.bak","description":"Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -64,7 +64,7 @@
           </li>
         
           <li class="nav-item">
-            <a class="nav-link active" href="/education.html"> Education</a>
+            <a class="nav-link " href="/education.html"> Education</a>
           </li>
         
           <li class="nav-item">
@@ -91,7 +91,7 @@
 
     <h1 class="my-4">
       
-      Education
+      Home
     </h1>
 
     
@@ -100,65 +100,32 @@
     <a href="/index.html">Home</a>
   </li>
   
-  <li class="breadcrumb-item active">Education</li>
+  <li class="breadcrumb-item active">Home</li>
 </ol>
 
     
     
     <hr>
 
-    <div class="edu">
-	<div class="row">
-		<div class="col col-sm-3 col-12 text-center img">
-			<img src = "assets/images/DSC_4426_uoft_ehsan_etesami.jpg"
-	         alt = "Ehsan Etesami University of Toronto 2019" />
-		</div>
-		<div class="col col-sm-9 col-12 txt">
-			<b>Ph.D. Student, Sept. 2018 – Present</b><br>
-			<a href="https://ece.utoronto.ca" target="_blank"><span>Electrical and Computer Engineering Department</span>
-			</br></a><span><a href="https://www.utoronto.ca" target="_blank">University of Toronto</a>, Toronto, Canada</span>
-		</div>
+    <div class="row pb-2 index">
+	<div class="col col-sm-4 col-12 text-center img">
+		<img src = "/Users/ehsan/fakepath/assets/images/Ehsan_Etesami_image_2019.jpg"
+         alt = "Ehsan Etesami University of Toronto 2019" />
 	</div>
+	<div class="col col-sm-8 col-12 txt">
+		<h5>
+		I am pursuing my PhD studies at the <a href="https://www.ece.utoronto.ca" target="_blank">Electrical and Computer Engineering department</a> of the <a href="https://www.utoronto.ca" target="_blank">University of Toronto</a>. I received my MSc from the <a href="http://webs.ce.sharif.edu/~eetesami/" target="_blank">Sharif University of Technology</a>, 2018 and my BSc from the <a href="https://eetesami.ece.iut.ac.ir" target="_blank">Isfahan University of Technology</a>, 2015. </br></br>
+		</h5>
+		<hr><h6>
+		<b class="pb-1">Contact:</b></br></br>
+		eh[dot]etesami [at] gmail[dot]com or</br> ehsan[dot]etesami [at] mail.utoronto.ca</br></br>
 
-	<div class="row ">
-		<div class="col col-sm-3 col-12 text-center img">
-			<img src = "assets/images/ehsan-etesami-sharif-graduation.jpg"
-	         alt = "Ehsan Etesami Sharif University of Technology CE 2018" />
-		</div>
-		<div class="col col-sm-9 col-12 txt">
-			
-			<b>M.Sc. Information Technology Engineering, Sept. 2015 – Jan. 2018</b><br>
-			<a href="http://ce.sharif.edu" target="_blank"><span>Department of Computer Engineering</span></a>, 
-			<a href="http://sharif.edu" target="_blank"><span>Sharif University of Technology (SUT)</span></a>, Tehran, Iran
-
-			<ul>
-				<li>Cumulative GPA: <strong>18.45/20</strong></li>
-				<li>Thesis Title: <span style="font-size: 1rem;"><a href="http://webs.ce.sharif.edu/~eetesami/performance-evaluation-of-cloud-services-considering-live-virtual-machine-migration/" ><span style="color: #0000ff;">Performance Evaluation of Cloud Services Considering Live Virtual Machine Migration</span></a></span></li>
-				<li>Supervisor: <a href="http://sharif.ir/~movaghar" target="_blank" >Prof. Ali Movaghar</a></li>
-			</ul>
-
-		</div>
+		<hr>
+	  <b>Address:</b></br></br>
+		BA 4177, 40 St. George Street</br>
+		Toronto, Canada, M5S2E4
+		</h6>
 	</div>
-
-	<div class="row ">
-	<div class="col col-sm-3 col-12 text-center img">
-			<img src = "assets/images/ehsan-etesami-iut-bsc.jpg"
-	         alt = "Ehsan Etesami Isfahan University of Technology ECE 2015" />
-	</div>
-	<div class="col col-sm-9 col-12 txt">
-
-		<b>B.Sc. Information Technology Engineering, 2011 – 2015,</b><br>
-		<a href="http://ece.iut.ac.ir" target="_blank"><span>Department of Electrical and Computer Engineering</span></a>, <a href="http://iut.ac.ir" target="_blank"><span>Isfahan University of Technology (IUT)</span></a>, Isfahan, Iran
-
-		<ul>
-			<li>Cumulative GPA: <strong>18.09/20</strong> <span style="color: #800080;">(Ranked 1<sup>st</sup> among 89 B.Sc. Computer Engineering students)</span></li>
-			<li>Thesis Title: <span style="color: #0000ff;">Simulation of Cancer Cells Behavior using Agent-based Approaches</span></li>
-			<li>Supervisor: <a href="http://manshaei.org" target="_blank" >Dr. M. H. Manshaei<br>
-		</a></li>
-		</ul>
-
-	</div>
-</div>
 </div>
 
 

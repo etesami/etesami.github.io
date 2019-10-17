@@ -1,1 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2019-09-22T18:30:36-04:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2019-10-17T19:51:25-04:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Create an Overlay Network in Ubuntu using Open vSwitch (OVS)</title><link href="https://etesami.github.io/2019/10/14/overlay-networks-in-ubuntu.html" rel="alternate" type="text/html" title="Create an Overlay Network in Ubuntu using Open vSwitch (OVS)" /><published>2019-10-14T00:00:00-04:00</published><updated>2019-10-14T00:00:00-04:00</updated><id>https://etesami.github.io/2019/10/14/overlay-networks-in-ubuntu</id><content type="html" xml:base="https://etesami.github.io/2019/10/14/overlay-networks-in-ubuntu.html">&lt;p&gt;By creating an overlay network, you can have a new interface attached to your system with any arbitrary IP that you would like. You can also join other machines to this network and have connectivity between all of them using the overlay IPs.
+OVS is a multilayer virtual switch designed to enable massive network automation through programmatic extension. To create an overlay network, we need to create an &lt;strong&gt;internal interface&lt;/strong&gt;. The internal interface is used because you may lose your connectivity when trying to build a bridge and connect your physical interfaces to it; since they would not get an IP (switches work in &lt;strong&gt;layer 2&lt;/strong&gt;). Instead, the internal interface obtains an IP address, and the host would be accessible. Here, we create an overlay network between three VMs running on Virtual Box.&lt;/p&gt;
+
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+&lt;h4&gt;Install Open vSwitch&lt;/h4&gt;
+&lt;p&gt;To install Open vSwitch please check &lt;a href=&quot;http://docs.openvswitch.org/en/latest/&quot;&gt;their page&lt;/a&gt;. Alternatively, you can install ovs using apt-get in ubuntu by:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;openvswitch-switch openvswitch-common&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In an overlay network created by Openvswitch, all packets are encapsulated in UDP packets associated with the port 4789. So please ensure this port is accessible.&lt;/p&gt;
+
+&lt;h4&gt;Create a bridge and interfaces&lt;/h4&gt;
+
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-7 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;VMs Overlay Network Sample&quot; src=&quot;/Users/ehsan/fakepath/assets/images/vms-overlay-network-sample.png&quot; /&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here, we create a bridge named &lt;strong&gt;br-mng&lt;/strong&gt;. An internal interface named &lt;strong&gt;intif&lt;/strong&gt; and an interface of type &lt;strong&gt;vxlan&lt;/strong&gt; are also created. Vxlan interface is used for point to point communication between two hosts. So the same key should be used for both hosts on each side of the connection. It should be noted that the MTU of the internal interface (intif) should be set to &lt;strong&gt;1450&lt;/strong&gt;. Since packets are encapsulated in UDP packets and the size of the payload is matter. There is a nice explanation &lt;a href=&quot;https://www.sidorenko.io/post/2018/11/openstack-networking-open-vswitch-and-vxlan-introduction&quot;&gt;here&lt;/a&gt;. Then we have:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;ovs-vsctl add-br br-mng
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;ovs-vsctl add-port br-mng intif &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;interface intif &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;internal
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;ovs-vsctl add-port br-mng vxlan1 &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;interface vxlan1 &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;vxlan &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+                   options:remote_ip&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;10.0.0.12 options:key&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1025
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;ifconfig intif 192.168.10.11/24 mtu 1450 up&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;And in VM #2 we have the same things. However, the underlay and overlay IP are changed correspondingly, but the key remains the same.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;ovs-vsctl add-br br-mng
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;ovs-vsctl add-port br-mng intif &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;interface intif &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;internal
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;ovs-vsctl add-port br-mng vxlan1 &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;interface vxlan1 &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;vxlan &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+                   options:remote_ip&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;10.0.0.11 options:key&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1025
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;ifconfig intif 192.168.10.12/24 mtu 1450 up&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4&gt;Test the Connectivity&lt;/h4&gt;
+&lt;p&gt;To ensure having proper connectivity, let’s see the status of interfaces of your VMs. We should have the &lt;strong&gt;overlay IP&lt;/strong&gt; that we chose before and &lt;strong&gt;MTU of 1450&lt;/strong&gt; for &lt;strong&gt;intif&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ifconfig
+eth0: &lt;span class=&quot;nv&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1500
+  inet 10.0.0.11 netmask 255.255.255.0  broadcast 10.0.0.255
+  &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+intif: &lt;span class=&quot;nv&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu 1450
+  inet 192.168.10.11 netmask 255.255.255.0  broadcast 192.168.10.255
+  &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  .&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;We also can use &lt;a href=&quot;https://iperf.fr&quot;&gt;iperf3&lt;/a&gt; which is a tool for active measurements of the maximum achievable bandwidth. 
+On VM #1 with overlay IP of 192.168.10.11 execute:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;iperf3 &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;and on the VM #2 with overlay IP of 192.168.10.12:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;iperf3 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 192.168.10.11&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Then you should see the following output:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM2:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;iperf3 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 192.168.10.11
+Connecting to host 192.168.10.11, port 5201
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4] &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;192.168.10.12 port 33092 connected to 192.168.10.11 port 5201
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; ID] Interval           Transfer     Bandwidth       Retr  Cwnd
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   0.00-1.00   sec   102 MBytes   858 Mbits/sec    0   2.09 MBytes       
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   1.00-2.00   sec   118 MBytes   992 Mbits/sec    0   2.33 MBytes       
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   2.00-3.00   sec   121 MBytes  1.01 Gbits/sec    0   2.78 MBytes       
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   3.00-4.00   sec   119 MBytes   996 Mbits/sec  166   1.97 MBytes       
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   4.00-5.00   sec   114 MBytes   957 Mbits/sec    0   1.97 MBytes       
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   5.00-6.00   sec   116 MBytes   974 Mbits/sec    0   2.39 MBytes       
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   6.00-7.00   sec   108 MBytes   902 Mbits/sec  680   1.71 MBytes       
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   7.00-8.00   sec   126 MBytes  1.06 Gbits/sec    0   1.82 MBytes       
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   8.00-9.00   sec   128 MBytes  1.07 Gbits/sec    0   1.90 MBytes       
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   9.00-10.00  sec   117 MBytes   980 Mbits/sec    0   1.93 MBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; ID] Interval           Transfer     Bandwidth       Retr
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   0.00-10.00  sec  1.14 GBytes   980 Mbits/sec  846             sender
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;  4]   0.00-10.00  sec  1.14 GBytes   977 Mbits/sec                  receiver
+
+iperf Done.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;If you see the transfer rate of 0 Byte, most likely there is a problem with the configured MTU of your interfaces.&lt;/p&gt;</content><author><name></name></author><summary type="html">By creating an overlay network, you can have a new interface attached to your system with any arbitrary IP that you would like. You can also join other machines to this network and have connectivity between all of them using the overlay IPs. OVS is a multilayer virtual switch designed to enable massive network automation through programmatic extension. To create an overlay network, we need to create an internal interface. The internal interface is used because you may lose your connectivity when trying to build a bridge and connect your physical interfaces to it; since they would not get an IP (switches work in layer 2). Instead, the internal interface obtains an IP address, and the host would be accessible. Here, we create an overlay network between three VMs running on Virtual Box.</summary></entry></feed>

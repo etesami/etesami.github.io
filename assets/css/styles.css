@@ -3209,4 +3209,6 @@ body img { width: 100%; }
 @media (min-width: 576px) { .edu .row { margin-bottom: 10px; }
   .edu .txt { padding: 10px 5px; } }
 
+.highlight pre { background: #d6d6d673; padding: 5px; }
+
 /*# sourceMappingURL=styles.css.map */
