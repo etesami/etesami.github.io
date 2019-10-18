@@ -1,1 +1,1 @@
-Sitemap: https://etesami.github.io/sitemap.xmll
+Sitemap: https://etesami.github.io/sitemap.xml
