@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-01-24T17:46:55-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Reverse ssh to Access Hosts Behind the NAT</title><link href="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html" rel="alternate" type="text/html" title="Reverse ssh to Access Hosts Behind the NAT" /><published>2020-01-17T00:00:00-05:00</published><updated>2020-01-17T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/17/reverse-ssh-linux</id><content type="html" xml:base="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html">&lt;p&gt;Assume you have a local machine behind NAT and there is a relay machine that has a public IP address. You want to have access to the local computer from anywhere.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-01-24T17:58:55-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Reverse ssh to Access Hosts Behind the NAT</title><link href="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html" rel="alternate" type="text/html" title="Reverse ssh to Access Hosts Behind the NAT" /><published>2020-01-17T00:00:00-05:00</published><updated>2020-01-17T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/17/reverse-ssh-linux</id><content type="html" xml:base="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html">&lt;p&gt;Assume you have a local machine behind NAT and there is a relay machine that has a public IP address. You want to have access to the local computer from anywhere.&lt;/p&gt;
 
 &lt;div class=&quot;row justify-content-center&quot;&gt;
  &lt;div class=&quot;col col-sm-7 col-11 align-self-center my-4 img&quot;&gt;
@@ -11,8 +11,11 @@
 &lt;p&gt;Log into the relay machine and then pick any arbitrary available port up. Here we use port &lt;strong&gt;10022&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;c&quot;&gt;# -f send to the background&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# -N means there is no command to execute over an established ssh connection&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# -R is used for port forwarding. Any request sent to the port 10022 of the relay machine will be forwarded to the port 22 of the local machine.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# -N means there is no command to execute&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#    over an established ssh connection&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# -R is used for port forwarding. Any request sent to the &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#    port 10022 of the relay machine will be forwarded to &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#    the port 22 of the local machine.&lt;/span&gt;
 
 ssh &lt;span class=&quot;nt&quot;&gt;-fN&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; 10022:localhost:22 &amp;lt;relay-username&amp;gt;@&amp;lt;relay-ip&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 

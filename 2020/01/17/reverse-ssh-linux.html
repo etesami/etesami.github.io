@@ -134,8 +134,11 @@
 <p>Log into the relay machine and then pick any arbitrary available port up. Here we use port <strong>10022</strong>:</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c"># -f send to the background</span>
-<span class="c"># -N means there is no command to execute over an established ssh connection</span>
-<span class="c"># -R is used for port forwarding. Any request sent to the port 10022 of the relay machine will be forwarded to the port 22 of the local machine.</span>
+<span class="c"># -N means there is no command to execute</span>
+<span class="c">#    over an established ssh connection</span>
+<span class="c"># -R is used for port forwarding. Any request sent to the </span>
+<span class="c">#    port 10022 of the relay machine will be forwarded to </span>
+<span class="c">#    the port 22 of the local machine.</span>
 
 ssh <span class="nt">-fN</span> <span class="nt">-R</span> 10022:localhost:22 &lt;relay-username&gt;@&lt;relay-ip&gt;</code></pre></figure>
 
