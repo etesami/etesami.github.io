@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148462557-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-148462557-1');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+
+  <title>Ehsan Etesami | VNC Server in Ubuntu 16.04 and CentOS 7</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/syntax.css">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico?">
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>VNC Server in Ubuntu 16.04 and CentOS 7 | Ehsan Etesami</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="VNC Server in Ubuntu 16.04 and CentOS 7" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we see how you can install and run a popular VNC server (TightVNC) on the Ubuntu 16:04 and CentOS 7 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are Gnome (fig 5), KDE (fig 4), Mate (fig 1), Xfce (fig 3) and LXDE (fig 2). Running each one requires different hardware specifications." />
+<meta property="og:description" content="If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we see how you can install and run a popular VNC server (TightVNC) on the Ubuntu 16:04 and CentOS 7 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are Gnome (fig 5), KDE (fig 4), Mate (fig 1), Xfce (fig 3) and LXDE (fig 2). Running each one requires different hardware specifications." />
+<link rel="canonical" href="https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html" />
+<meta property="og:url" content="https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html" />
+<meta property="og:site_name" content="Ehsan Etesami" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-10T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"VNC Server in Ubuntu 16.04 and CentOS 7","url":"https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html","datePublished":"2020-01-10T00:00:00-05:00","dateModified":"2020-01-10T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html"},"description":"If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we see how you can install and run a popular VNC server (TightVNC) on the Ubuntu 16:04 and CentOS 7 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are Gnome (fig 5), KDE (fig 4), Mate (fig 1), Xfce (fig 3) and LXDE (fig 2). Running each one requires different hardware specifications.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light fixed-top bg-bluelight">
+  <div class="container">
+    <a class="navbar-brand" href="/index.html">
+       Ehsan Etesami
+      
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        
+          <li class="nav-item">
+            <a class="nav-link " href="/"> Home</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link " href="/education.html"> Education</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link " href="/publication.html"> Publication</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link " href="/teaching.html"> Teaching</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link " href="/blog.html"> Blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Header Slide -->
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <h1 class="my-4">
+      
+      VNC Server in Ubuntu 16.04 and CentOS 7
+    </h1>
+
+    
+      <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/index.html">Home</a>
+  </li>
+  
+    <li class="breadcrumb-item active"><a href="/blog.html">Blog</a></li>
+  
+  <li class="breadcrumb-item active">VNC Server in Ubuntu 16.04 and CentOS 7</li>
+</ol>
+
+    
+    
+    <hr>
+
+    <div class="row justify-content-lg-center">
+
+  <!-- Blog Entries Column -->
+  <div class="col-lg-10 col-12">
+    <!-- Blog Post -->
+    <!-- <div class="card-img-top"></div> -->
+    <!-- <h2 class="card-title">VNC Server in Ubuntu 16.04 and CentOS 7</h2> -->
+    <div class="my-3 text-muted">
+      January 10, 2020
+    </div>    
+    <div class="card-text"><p>If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we see how you can install and run a popular VNC server (TightVNC) on the Ubuntu 16:04 and CentOS 7 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are Gnome (fig 5), KDE (fig 4), Mate (fig 1), Xfce (fig 3) and LXDE (fig 2). Running each one requires different hardware specifications.</p>
+
+<div class="row justify-content-center">
+ 
+ <div class="col col-sm-6 col-11 my-4 img">
+   <img alt="LXDE Plasma Environment" src="/assets/images/LXDE_desktop_full.png" />
+   <span>Fig 2: LXDE Plasma Environment</span>
+ </div>
+ <div class="col col-sm-6 col-11 my-4 img">
+   <img alt="XFCE Environment" src="/assets/images/ubuntu-mate.png" />
+   <span>Fig 5: Mate Environment</span>
+ </div>
+</div>
+<div class="row justify-content-center">
+ <div class="col col-sm-4 col-11 my-4 img">
+   <img alt="XFCE Environment" src="/assets/images/XFCE-Desktop-standard.png" />
+   <span>Fig 3: XFCE Environment</span>
+ </div>
+ <div class="col col-md-4 col-11 my-4 img">
+   <img alt="KDE Plasma Environment" src="/assets/images/KDE_Plasma_Desktop.png" />
+   <span>Fig 4: KDE Plasma Environment</span>
+ </div>
+ 
+ <div class="col col-md-4 col-11 align-self-center my-4 img">
+   <img alt="Gnome Environment" src="/assets/images/GNOME.png" />
+   <span>Fig 1: Gnome Environment</span>
+ </div>
+</div>
+
+<h2>Getting Started</h2>
+
+<p>If the operating system has a graphical environment you may skip the <strong>Install Graphical Environment</strong> section. Let’s start with CentOS 7:</p>
+
+<hr />
+
+<h3>CentOS 7</h3>
+<h4>Install Graphical Environment</h4>
+
+<p>To install Gnome or KDE on CentOS 7:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>yum groupinstall <span class="s2">"GNOME Desktop"</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>yum groupinstall <span class="s2">"KDE Plasma Workspaces"</span></code></pre></figure>
+
+<h4>Install TightVNC Server</h4>
+<p><a href="https://www.tightvnc.com">TightVNC server</a> is a popular VNC server. Install it on the CentOS by:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>yum <span class="nb">install </span>tigervnc-server xorg-x11-fonts-Type1</code></pre></figure>
+
+<h4>VNC Server Configuration</h4>
+<p>The next step is to create a config file for VNC server. In CentOS, we can copy the default config file and modify it to reflects the appropriate configuration.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo cp</span> /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service</code></pre></figure>
+
+<p>The number <strong>1</strong> in <strong>vncserver@:1.service</strong> shows the display port in VNC server. The VNC server uses ports ranging from 5901 to 5909. Copy the bellow configuration to the newly created file and replace the <strong>centos</strong> with your username.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Remote desktop service <span class="o">(</span>VNC<span class="o">)</span>
+<span class="nv">After</span><span class="o">=</span>syslog.target network.target
+
+<span class="o">[</span>Service]
+<span class="nv">Type</span><span class="o">=</span>forking
+<span class="nv">ExecStartPre</span><span class="o">=</span>/bin/sh <span class="nt">-c</span> <span class="s1">'/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :'</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/runuser <span class="nt">-l</span> centos <span class="nt">-c</span> <span class="s2">"/usr/bin/vncserver %i"</span>
+<span class="nv">ExecStop</span><span class="o">=</span>/bin/sh <span class="nt">-c</span> <span class="s1">'/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :'</span>
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target</code></pre></figure>
+
+<p>We realized a line like this “PIDFile=/home/<USER>/.vnc/%H%i.pid" in the configuration file may cause problem in starting the service. So we have removed it. Then, reload the configuration and enable the service to start on boot:</USER></p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">systemctl daemon-reload
+systemctl <span class="nb">enable </span>vncserver@:1.service</code></pre></figure>
+
+<h4>Running the VNC Service</h4>
+<p>Now run the VNC server. If this is the first time then you have to provide the password for VNC server. This password will be used when you connect to the VNC sever.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">vncserver</code></pre></figure>
+
+<p>After running VNC server, kill the session that the previous command just created and run the service:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">vncserver <span class="nt">-kill</span> :1
+<span class="nb">sudo </span>systemctl start vncserver@:1.service</code></pre></figure>
+
+<hr />
+
+<h3>Ubuntu 16:04</h3>
+<h4>Install Graphical Environment</h4>
+
+<p>I prefer to install the graphical environment using a tool called <strong>tasksel</strong>. It used to install a collection of tools:</p>
+
+<p>To install Gnome or KDE on Ubuntu 16.04:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>apt <span class="nb">install </span>tasksel
+<span class="nb">sudo </span>tasksel</code></pre></figure>
+
+<p>When you run the tool, you will see a user interface which let you install collections of tools, including a couple of graphical environment for Ubuntu.</p>
+
+<div class="row justify-content-center">
+ <div class="col col-sm-8 col-11 align-self-center my-4 img">
+   <img alt="VMs Overlay Network Sample" src="/assets/images/ubuntu-tasksel.png" />
+ </div>
+</div>
+
+<h4>Install TightVNC Server</h4>
+<p>Install TightVNC server on the Ubuntu by:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>apt <span class="nb">install </span>tightvncserver</code></pre></figure>
+
+<h4>VNC Server Configuration</h4>
+<p>In Ubuntu we have to create a file named as <strong>vncserver@.service</strong>:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>vim /etc/systemd/system/vncserver@.service</code></pre></figure>
+
+<p>Put the content bellow into the file. Do not forget to replace every <strong>ubuntu</strong> word with your account username on the machine:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="o">[[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Start TightVNC server at startup
+<span class="nv">After</span><span class="o">=</span>syslog.target network.target
+
+<span class="o">[</span>Service]
+<span class="nv">Type</span><span class="o">=</span>forking
+<span class="nv">User</span><span class="o">=</span>ubuntu
+<span class="nv">Group</span><span class="o">=</span>ubuntu
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/ubuntu
+
+<span class="nv">PIDFile</span><span class="o">=</span>/home/ubuntu/.vnc/%H:%i.pid                                                                                          
+<span class="nv">ExecStartPre</span><span class="o">=</span>-/usr/bin/vncserver <span class="nt">-kill</span> :%i <span class="o">&gt;</span> /dev/null 2&gt;&amp;1
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/vncserver :%i
+<span class="nv">ExecStop</span><span class="o">=</span>/usr/bin/vncserver <span class="nt">-kill</span> :%i
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>vncserver@1</code></pre></figure>
+
+<h4>Running the VNC Service</h4>
+<p>Now we need to run the VNC server and If this is the first time then you have to provide the password for VNC server:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">vncserver</code></pre></figure>
+
+<p>After running VNC server, kill the session that the previous command just created and run the service:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">vncserver <span class="nt">-kill</span> :1
+<span class="nb">sudo </span>systemctl start vncserver@1</code></pre></figure>
+
+<hr />
+
+<h4>Access to the Remote Machine using VNC Client</h4>
+<p>There are a couple of VNC viewer client avaialbe. Download one of them and connect to server:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">vnc://IP_address:5901</code></pre></figure>
+
+</div>  
+  </div>
+
+  <!-- Sidebar Widgets Column -->
+<!--   <div class="col-md-4 d-none d-md-block">
+    <div class="card">
+      <h5 class="card-header">Last Posts</h5>
+      <div class="card-body">
+        <ul class="pl-3">
+          
+            <li>
+              <h6><a href="/2020/01/17/reverse-ssh-linux.html">Reverse SSH to Access Hosts Behind the NAT</a></h6>
+            </li>
+          
+            <li>
+              <h6><a href="/2020/01/10/vnc-ubuntu-centos.html">VNC Server in Ubuntu 16.04 and CentOS 7</a></h6>
+            </li>
+          
+            <li>
+              <h6><a href="/2019/10/14/overlay-networks-in-ubuntu.html">Create an Overlay Network in Ubuntu using Open vSwitch (OVS)</a></h6>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+ -->
+  </div>
+
+</div>
+<!-- /.row -->
+
+
+  </div>
+  <!-- /.container -->
+
+  
+  <!-- Footer -->
+<footer class="py-3 bg-bluelight">
+  <div class="container">
+    <p class="m-0 text-center text-black txt-small">Copyright &copy; 2020, Ehsan Etesami</p>
+  </div>
+  <!-- /.container -->
+</footer>
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
