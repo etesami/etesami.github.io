@@ -1,4 +1,167 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-01-26T01:03:11-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Reverse SSH to Access Hosts Behind the NAT</title><link href="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html" rel="alternate" type="text/html" title="Reverse SSH to Access Hosts Behind the NAT" /><published>2020-01-17T00:00:00-05:00</published><updated>2020-01-17T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/17/reverse-ssh-linux</id><content type="html" xml:base="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html">&lt;p&gt;Assume you have a local machine behind NAT and there is a relay machine that has a public IP address. You want to have access to the local computer from anywhere.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-01-28T22:05:29-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Run PyCharm IDE over SSH using Remote Host Interpreter</title><link href="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html" rel="alternate" type="text/html" title="Run PyCharm IDE over SSH using Remote Host Interpreter" /><published>2020-01-27T00:00:00-05:00</published><updated>2020-01-27T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely</id><content type="html" xml:base="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html">&lt;div class=&quot;row justify-content-between&quot;&gt;
+	&lt;div class=&quot;col col-sm-8 mt-4 col-11&quot;&gt;
+		Assume you have installed a VM on the VirtualBox. We first see how we can access the VM terminal within the host machine. Then we will see how to run our python code using PyCharm IDE, which is installed on the host while codes and the interpreter are all located on the VM. 
+ &lt;/div&gt;
+ &lt;div class=&quot;col col-sm-4 col-11 my-4 img&quot;&gt;
+   &lt;center&gt;&lt;img style=&quot;width: 80%;&quot; alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/SSH-VM-over-NAT-PyCharm-SSH-interpreter.png&quot; /&gt;&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+&lt;h4&gt;VM Network Configuration&lt;/h4&gt;
+&lt;p&gt;There are possible configurations for the VM withing VirtualBox, namely “Bridge” and “NAT” mode. &lt;strong&gt;NAT&lt;/strong&gt; is the simplest way of accessing an external network from a virtual machine. We set the network adaptor mode to &lt;strong&gt;NAT&lt;/strong&gt; and configure &lt;strong&gt;Port Forwarding&lt;/strong&gt; in order to get access to the VM from the &lt;strong&gt;host&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-01.png&quot; /&gt;
+   &lt;center&gt;Fig 1: Select the VM and click on Setting&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Go to the &lt;strong&gt;Network&lt;/strong&gt; and then select &lt;strong&gt;NAT&lt;/strong&gt; in &lt;em&gt;“Attached to”&lt;/em&gt; and click on &lt;strong&gt;Port Forwarding&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-02.png&quot; /&gt;
+   &lt;center&gt;Fig 2: VM Network Configuration&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;In the following step we forward all queries sent to the port &lt;strong&gt;2229&lt;/strong&gt; of the &lt;strong&gt;Host&lt;/strong&gt; to the port &lt;strong&gt;22&lt;/strong&gt; of the &lt;strong&gt;VM&lt;/strong&gt; which is the default port for SSH. The port number 2229 can be any arbitrary available port in the host. Add a new entry and enter the number &lt;strong&gt;2229&lt;/strong&gt; for &lt;strong&gt;Host Port&lt;/strong&gt; and number &lt;strong&gt;22&lt;/strong&gt; for the &lt;strong&gt;Guest Port&lt;/strong&gt;. Leave everything else and click on Ok.&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-03.png&quot; /&gt;
+   &lt;center&gt;Fig 3: VM Network NAT Configuration&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Then start the VM and you are done with VM’s network configuration!&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-04.png&quot; /&gt;
+   &lt;center&gt;Fig 4: Running the VM&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;h4&gt;Connect to the VM from the Host (your computer)&lt;/h4&gt;
+&lt;p&gt;Now you are able to open your terminal (if you work with windows you can try &lt;a href=&quot;https://www.putty.org&quot;&gt;putty&lt;/a&gt; and then connect to your VM. Thus, minimize the VM &lt;em&gt;(you do not have to work with the VM’s actual windows anymore!)&lt;/em&gt; and open a new terminal and enter:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ssh ubuntu@localhost &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 2229&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-05.png&quot; /&gt;
+   &lt;center&gt;Fig 5: Log in to the VM withing the Host terminal&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-06.png&quot; /&gt;
+   &lt;center&gt;Fig 6: You've loged in to the VM!&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then it prompts for the password, after entering the password you will log into the VM. Now you can open as many terminals as you need and as long as you have made an SSH connection (like fig. 5) then you can think of each of them as a VM terminal. Every command you enter is executed in the VM.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4&gt;Using PyCharm over SSH Connection&lt;/h4&gt;
+&lt;p&gt;Now we are looking for an IDE that lets us work on files on the remote server and execute them! Thus, download and install &lt;strong&gt;&lt;a href=&quot;https://www.jetbrains.com/pycharm/download/&quot;&gt;PyCharm Professional Edition&lt;/a&gt;&lt;/strong&gt;. If you install community edition, it does not provide you with the feature we are looking for. You can use your university mail to activate the license.&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-7 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-01.png&quot; /&gt;
+   &lt;center&gt;Fig 7: Download the Professional Edition&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-7 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-02.png&quot; /&gt;
+   &lt;center&gt;Fig 8: Run the PyCharm&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;After installation lunch the IDE and select &lt;strong&gt;Create new project&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-03.png&quot; /&gt;
+   &lt;center&gt;Fig 9: Select &quot;Create new project&quot;&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Enter a new name for the project and move forward according to the image below:&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-04.png&quot; /&gt;
+   &lt;center&gt;Fig 10: Configure the Interpreter&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;According to the image below, enter &lt;strong&gt;localhost&lt;/strong&gt; and &lt;strong&gt;ubuntu&lt;/strong&gt; for the &lt;em&gt;Host&lt;/em&gt; and &lt;em&gt;Username&lt;/em&gt; fields, respectively. Enter the port number &lt;strong&gt;2229&lt;/strong&gt; in the &lt;em&gt;port number&lt;/em&gt; field. Then press next.&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-05.png&quot; /&gt;
+   &lt;center&gt;Fig 11: Configure the interpreter&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;In the next step you give the path where the python binary is located. This can be the default python path in your system (you can get that using &lt;code class=&quot;highlighter-rouge&quot;&gt;whereis python&lt;/code&gt;). &lt;strong&gt;However&lt;/strong&gt;, we have to use the binaries provided within the lab. Similar to when you are using command &lt;code class=&quot;highlighter-rouge&quot;&gt;source /home/ubuntu/lab1/sourceMe&lt;/code&gt;. Therefore, enter the path according to the figure below and press finish:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;/home/ubuntu/lab1/.venv/bin/python3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-08.png&quot; /&gt;
+   &lt;center&gt;Fig 12: Path for python binary&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;In the next step, make sure you have selected the &lt;strong&gt;Remote interpreter&lt;/strong&gt; like what you see in the picture below:&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-09.png&quot; /&gt;
+   &lt;center&gt;Fig 13: Select the newly added remote interpreter&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now you have created a project using VM’s python interpreter. Let’s copy files from the VM into the host in order to start editing them. Go to &lt;strong&gt;tools&lt;/strong&gt;, &lt;strong&gt;Deployment&lt;/strong&gt; and then &lt;strong&gt;Browse Remote Host&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-12 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-10.png&quot; /&gt;
+   &lt;center&gt;Fig 14: Enable browsing remote host&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;In the newly opened window, look for &lt;strong&gt;home&lt;/strong&gt;, then &lt;strong&gt;ubuntu&lt;/strong&gt; and &lt;strong&gt;lab1&lt;/strong&gt;. Open the lab1 folder and select both folders &lt;strong&gt;track1&lt;/strong&gt; and &lt;strong&gt;track2&lt;/strong&gt; by pressing &lt;strong&gt;ctrl&lt;/strong&gt; button. Then press &lt;strong&gt;right-click&lt;/strong&gt; and select &lt;strong&gt;copy&lt;/strong&gt; according to the image below:&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-8 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-11.png&quot; /&gt;
+   &lt;center&gt;Fig 15: Copy folders from remote server (VM) to your machine (host)&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Go to the &lt;strong&gt;Project&lt;/strong&gt; windows in the left side of IDE and past folders inside your &lt;strong&gt;project folder&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-8 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-12.png&quot; /&gt;
+   &lt;center&gt;Fig 16: Past folders from VM to your host&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;So now you have lab files from the VM. Before starting to open and work on them, let’s sync your host with the VM so that the changes you are going to make are being synced with the files in the VM. Thus, click on &lt;strong&gt;folder project&lt;/strong&gt;, go to the &lt;strong&gt;Deployment&lt;/strong&gt; and select &lt;strong&gt;upload to ubuntu@localhost:2229&lt;/strong&gt;, like the image below:&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-12 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-13.png&quot; /&gt;
+   &lt;center&gt;Fig 17: Upload and sync files with the VM&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now you are ready to open files, edit and execute them. So let’s open folder &lt;code class=&quot;highlighter-rouge&quot;&gt;track1/module4&lt;/code&gt; and then &lt;code class=&quot;highlighter-rouge&quot;&gt;receiver.py&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;sender.py&lt;/code&gt;. Then &lt;em&gt;run&lt;/em&gt; the &lt;code class=&quot;highlighter-rouge&quot;&gt;receiver.py&lt;/code&gt; and then do the same for the &lt;code class=&quot;highlighter-rouge&quot;&gt;sender.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-12 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-14.png&quot; /&gt;
+   &lt;center&gt;Fig 18: Open the files, edit and run them&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Now you get results of the execution of each file on the bottom window and it’s like when you are running on two separate terminals inside the VM.&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-12 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-15.png&quot; /&gt;
+   &lt;center&gt;Fig 19: Reciver.py is ruuning and you can see its status on the terminal:&lt;/center&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Congratulations! You have successfully edited and executed your files on the remote VM!&lt;/p&gt;</content><author><name></name></author><summary type="html">Assume you have installed a VM on the VirtualBox. We first see how we can access the VM terminal within the host machine. Then we will see how to run our python code using PyCharm IDE, which is installed on the host while codes and the interpreter are all located on the VM.</summary></entry><entry><title type="html">Reverse SSH to Access Hosts Behind the NAT</title><link href="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html" rel="alternate" type="text/html" title="Reverse SSH to Access Hosts Behind the NAT" /><published>2020-01-17T00:00:00-05:00</published><updated>2020-01-17T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/17/reverse-ssh-linux</id><content type="html" xml:base="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html">&lt;p&gt;Assume you have a local machine behind NAT and there is a relay machine that has a public IP address. You want to have access to the local computer from anywhere.&lt;/p&gt;
 
 &lt;div class=&quot;row justify-content-center&quot;&gt;
  &lt;div class=&quot;col col-sm-7 col-11 align-self-center my-4 img&quot;&gt;

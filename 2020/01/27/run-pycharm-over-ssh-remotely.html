@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148462557-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-148462557-1');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+
+  <title>Ehsan Etesami | Run PyCharm IDE over SSH using Remote Host Interpreter</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/syntax.css">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico?">
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Run PyCharm IDE over SSH using Remote Host Interpreter | Ehsan Etesami</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Run PyCharm IDE over SSH using Remote Host Interpreter" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Assume you have installed a VM on the VirtualBox. We first see how we can access the VM terminal within the host machine. Then we will see how to run our python code using PyCharm IDE, which is installed on the host while codes and the interpreter are all located on the VM." />
+<meta property="og:description" content="Assume you have installed a VM on the VirtualBox. We first see how we can access the VM terminal within the host machine. Then we will see how to run our python code using PyCharm IDE, which is installed on the host while codes and the interpreter are all located on the VM." />
+<link rel="canonical" href="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html" />
+<meta property="og:url" content="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html" />
+<meta property="og:site_name" content="Ehsan Etesami" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-27T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"Run PyCharm IDE over SSH using Remote Host Interpreter","url":"https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html","datePublished":"2020-01-27T00:00:00-05:00","dateModified":"2020-01-27T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html"},"description":"Assume you have installed a VM on the VirtualBox. We first see how we can access the VM terminal within the host machine. Then we will see how to run our python code using PyCharm IDE, which is installed on the host while codes and the interpreter are all located on the VM.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light fixed-top bg-bluelight">
+  <div class="container">
+    <a class="navbar-brand" href="/index.html">
+       Ehsan Etesami
+      
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        
+          <li class="nav-item">
+            <a class="nav-link " href="/"> Home</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link " href="/education.html"> Education</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link " href="/publication.html"> Publication</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link " href="/teaching.html"> Teaching</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link " href="/blog.html"> Blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Header Slide -->
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <h1 class="my-4">
+      
+      Run PyCharm IDE over SSH using Remote Host Interpreter
+    </h1>
+
+    
+      <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/index.html">Home</a>
+  </li>
+  
+    <li class="breadcrumb-item active"><a href="/blog.html">Blog</a></li>
+  
+  <li class="breadcrumb-item active">Run PyCharm IDE over SSH using Remote Host Interpreter</li>
+</ol>
+
+    
+    
+    <hr>
+
+    <div class="row justify-content-lg-center">
+
+  <!-- Blog Entries Column -->
+  <div class="col-lg-10 col-12">
+    <!-- Blog Post -->
+    <!-- <div class="card-img-top"></div> -->
+    <!-- <h2 class="card-title">Run PyCharm IDE over SSH using Remote Host Interpreter</h2> -->
+    <div class="my-3 text-muted">
+      January 27, 2020
+    </div>    
+    <div class="card-text"><div class="row justify-content-between">
+	<div class="col col-sm-8 mt-4 col-11">
+		Assume you have installed a VM on the VirtualBox. We first see how we can access the VM terminal within the host machine. Then we will see how to run our python code using PyCharm IDE, which is installed on the host while codes and the interpreter are all located on the VM. 
+ </div>
+ <div class="col col-sm-4 col-11 my-4 img">
+   <center><img style="width: 80%;" alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/SSH-VM-over-NAT-PyCharm-SSH-interpreter.png" /></center>
+ </div>
+</div>
+
+<hr />
+
+<h2>Getting Started</h2>
+<h4>VM Network Configuration</h4>
+<p>There are possible configurations for the VM withing VirtualBox, namely “Bridge” and “NAT” mode. <strong>NAT</strong> is the simplest way of accessing an external network from a virtual machine. We set the network adaptor mode to <strong>NAT</strong> and configure <strong>Port Forwarding</strong> in order to get access to the VM from the <strong>host</strong>.</p>
+
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-01.png" />
+   <center>Fig 1: Select the VM and click on Setting</center>
+ </div>
+</div>
+<p>Go to the <strong>Network</strong> and then select <strong>NAT</strong> in <em>“Attached to”</em> and click on <strong>Port Forwarding</strong>:</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-02.png" />
+   <center>Fig 2: VM Network Configuration</center>
+ </div>
+</div>
+<p>In the following step we forward all queries sent to the port <strong>2229</strong> of the <strong>Host</strong> to the port <strong>22</strong> of the <strong>VM</strong> which is the default port for SSH. The port number 2229 can be any arbitrary available port in the host. Add a new entry and enter the number <strong>2229</strong> for <strong>Host Port</strong> and number <strong>22</strong> for the <strong>Guest Port</strong>. Leave everything else and click on Ok.</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-03.png" />
+   <center>Fig 3: VM Network NAT Configuration</center>
+ </div>
+</div>
+<p>Then start the VM and you are done with VM’s network configuration!</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-04.png" />
+   <center>Fig 4: Running the VM</center>
+ </div>
+</div>
+<hr />
+
+<h4>Connect to the VM from the Host (your computer)</h4>
+<p>Now you are able to open your terminal (if you work with windows you can try <a href="https://www.putty.org">putty</a> and then connect to your VM. Thus, minimize the VM <em>(you do not have to work with the VM’s actual windows anymore!)</em> and open a new terminal and enter:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">ssh ubuntu@localhost <span class="nt">-p</span> 2229</code></pre></figure>
+
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-05.png" />
+   <center>Fig 5: Log in to the VM withing the Host terminal</center>
+ </div>
+</div>
+
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-06.png" />
+   <center>Fig 6: You've loged in to the VM!</center>
+ </div>
+</div>
+
+<p>Then it prompts for the password, after entering the password you will log into the VM. Now you can open as many terminals as you need and as long as you have made an SSH connection (like fig. 5) then you can think of each of them as a VM terminal. Every command you enter is executed in the VM.</p>
+
+<hr />
+
+<h4>Using PyCharm over SSH Connection</h4>
+<p>Now we are looking for an IDE that lets us work on files on the remote server and execute them! Thus, download and install <strong><a href="https://www.jetbrains.com/pycharm/download/">PyCharm Professional Edition</a></strong>. If you install community edition, it does not provide you with the feature we are looking for. You can use your university mail to activate the license.</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-7 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-01.png" />
+   <center>Fig 7: Download the Professional Edition</center>
+ </div>
+</div>
+
+<div class="row justify-content-center">
+ <div class="col col-sm-7 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-02.png" />
+   <center>Fig 8: Run the PyCharm</center>
+ </div>
+</div>
+<p>After installation lunch the IDE and select <strong>Create new project</strong>:</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-03.png" />
+   <center>Fig 9: Select "Create new project"</center>
+ </div>
+</div>
+<p>Enter a new name for the project and move forward according to the image below:</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-04.png" />
+   <center>Fig 10: Configure the Interpreter</center>
+ </div>
+</div>
+<p>According to the image below, enter <strong>localhost</strong> and <strong>ubuntu</strong> for the <em>Host</em> and <em>Username</em> fields, respectively. Enter the port number <strong>2229</strong> in the <em>port number</em> field. Then press next.</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-05.png" />
+   <center>Fig 11: Configure the interpreter</center>
+ </div>
+</div>
+<p>In the next step you give the path where the python binary is located. This can be the default python path in your system (you can get that using <code class="highlighter-rouge">whereis python</code>). <strong>However</strong>, we have to use the binaries provided within the lab. Similar to when you are using command <code class="highlighter-rouge">source /home/ubuntu/lab1/sourceMe</code>. Therefore, enter the path according to the figure below and press finish:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">/home/ubuntu/lab1/.venv/bin/python3</code></pre></figure>
+
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-08.png" />
+   <center>Fig 12: Path for python binary</center>
+ </div>
+</div>
+<p>In the next step, make sure you have selected the <strong>Remote interpreter</strong> like what you see in the picture below:</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-10 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-09.png" />
+   <center>Fig 13: Select the newly added remote interpreter</center>
+ </div>
+</div>
+<p>Now you have created a project using VM’s python interpreter. Let’s copy files from the VM into the host in order to start editing them. Go to <strong>tools</strong>, <strong>Deployment</strong> and then <strong>Browse Remote Host</strong>:</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-12 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-10.png" />
+   <center>Fig 14: Enable browsing remote host</center>
+ </div>
+</div>
+<p>In the newly opened window, look for <strong>home</strong>, then <strong>ubuntu</strong> and <strong>lab1</strong>. Open the lab1 folder and select both folders <strong>track1</strong> and <strong>track2</strong> by pressing <strong>ctrl</strong> button. Then press <strong>right-click</strong> and select <strong>copy</strong> according to the image below:</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-8 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-11.png" />
+   <center>Fig 15: Copy folders from remote server (VM) to your machine (host)</center>
+ </div>
+</div>
+<p>Go to the <strong>Project</strong> windows in the left side of IDE and past folders inside your <strong>project folder</strong>:</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-8 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-12.png" />
+   <center>Fig 16: Past folders from VM to your host</center>
+ </div>
+</div>
+<p>So now you have lab files from the VM. Before starting to open and work on them, let’s sync your host with the VM so that the changes you are going to make are being synced with the files in the VM. Thus, click on <strong>folder project</strong>, go to the <strong>Deployment</strong> and select <strong>upload to ubuntu@localhost:2229</strong>, like the image below:</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-12 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-13.png" />
+   <center>Fig 17: Upload and sync files with the VM</center>
+ </div>
+</div>
+<p>Now you are ready to open files, edit and execute them. So let’s open folder <code class="highlighter-rouge">track1/module4</code> and then <code class="highlighter-rouge">receiver.py</code> and <code class="highlighter-rouge">sender.py</code>. Then <em>run</em> the <code class="highlighter-rouge">receiver.py</code> and then do the same for the <code class="highlighter-rouge">sender.py</code>:</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-12 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-14.png" />
+   <center>Fig 18: Open the files, edit and run them</center>
+ </div>
+</div>
+<p>Now you get results of the execution of each file on the bottom window and it’s like when you are running on two separate terminals inside the VM.</p>
+<div class="row justify-content-center">
+ <div class="col col-sm-12 col-11 align-self-center my-4 img">
+   <img alt="SSH to VM over NAT, PyCharm with SSH interpreter" src="/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-15.png" />
+   <center>Fig 19: Reciver.py is ruuning and you can see its status on the terminal:</center>
+ </div>
+</div>
+
+<p>Congratulations! You have successfully edited and executed your files on the remote VM!</p>
+
+</div>  
+  </div>
+
+  <!-- Sidebar Widgets Column -->
+<!--   <div class="col-md-4 d-none d-md-block">
+    <div class="card">
+      <h5 class="card-header">Last Posts</h5>
+      <div class="card-body">
+        <ul class="pl-3">
+          
+            <li>
+              <h6><a href="/2020/01/27/run-pycharm-over-ssh-remotely.html">Run PyCharm IDE over SSH using Remote Host Interpreter</a></h6>
+            </li>
+          
+            <li>
+              <h6><a href="/2020/01/17/reverse-ssh-linux.html">Reverse SSH to Access Hosts Behind the NAT</a></h6>
+            </li>
+          
+            <li>
+              <h6><a href="/2020/01/10/vnc-ubuntu-centos.html">VNC Server in Ubuntu 16.04 and CentOS 7</a></h6>
+            </li>
+          
+            <li>
+              <h6><a href="/2019/10/14/overlay-networks-in-ubuntu.html">Create an Overlay Network in Ubuntu using Open vSwitch (OVS)</a></h6>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+ -->
+  </div>
+
+</div>
+<!-- /.row -->
+
+
+  </div>
+  <!-- /.container -->
+
+  
+  <!-- Footer -->
+<footer class="py-3 bg-bluelight">
+  <div class="container">
+    <p class="m-0 text-center text-black txt-small">Copyright &copy; 2020, Ehsan Etesami</p>
+  </div>
+  <!-- /.container -->
+</footer>
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
