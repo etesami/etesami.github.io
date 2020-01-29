@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-01-29T01:26:34-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Run PyCharm IDE over SSH using Remote Host Interpreter</title><link href="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html" rel="alternate" type="text/html" title="Run PyCharm IDE over SSH using Remote Host Interpreter" /><published>2020-01-27T00:00:00-05:00</published><updated>2020-01-27T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely</id><content type="html" xml:base="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html">&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-01-29T13:08:22-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Run PyCharm IDE over SSH using Remote Host Interpreter</title><link href="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html" rel="alternate" type="text/html" title="Run PyCharm IDE over SSH using Remote Host Interpreter" /><published>2020-01-27T00:00:00-05:00</published><updated>2020-01-27T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely</id><content type="html" xml:base="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html">&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
   1. This tutorial is intended for &lt;b&gt;UofT ECE361&lt;/b&gt;, however, it is general enough for any other interested readers.&lt;br /&gt;
   2. The purpose of this tutorial is to provide help to those who have problems with &lt;b&gt;VM's screen size&lt;/b&gt; or the &lt;b&gt;installed IDE&lt;/b&gt; and want to have a &lt;b&gt;full IDE&lt;/b&gt; to work with.&lt;br /&gt;
   3. This workaround is completely &lt;b&gt;optional&lt;/b&gt; and does not affect your ability to do the labs, however, it might make it &lt;b&gt;easier&lt;/b&gt;.&lt;br /&gt;
@@ -19,7 +19,7 @@
 
 &lt;h2&gt;Getting Started&lt;/h2&gt;
 &lt;h4&gt;VM Network Configuration&lt;/h4&gt;
-&lt;p&gt;There are possible configurations for the VM withing VirtualBox, namely “Bridge” and “NAT” mode. &lt;strong&gt;NAT&lt;/strong&gt; is the simplest way of accessing an external network from a virtual machine. We set the network adaptor mode to &lt;strong&gt;NAT&lt;/strong&gt; and configure &lt;strong&gt;Port Forwarding&lt;/strong&gt; in order to get access to the VM from the &lt;strong&gt;host&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;There are possible configurations for the VM within VirtualBox, namely “Bridge” and “NAT” mode. &lt;strong&gt;NAT&lt;/strong&gt; is the simplest way of accessing an external network from a virtual machine. We set the network adaptor mode to &lt;strong&gt;NAT&lt;/strong&gt; and configure &lt;strong&gt;Port Forwarding&lt;/strong&gt; in order to get access to the VM from the &lt;strong&gt;host&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;row justify-content-center&quot;&gt;
  &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
@@ -65,7 +65,7 @@ ssh ubuntu@localhost &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 2229&lt;/c
 &lt;div class=&quot;row justify-content-center&quot;&gt;
  &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
    &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/vm-nat-virtualbox-ssh-05.png&quot; /&gt;
-   &lt;center&gt;Fig 5: Log in to the VM withing the Host terminal&lt;/center&gt;
+   &lt;center&gt;Fig 5: Log in to the VM within the Host terminal&lt;/center&gt;
  &lt;/div&gt;
 &lt;/div&gt;
 
