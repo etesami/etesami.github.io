@@ -1,6 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-01-28T22:16:18-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Run PyCharm IDE over SSH using Remote Host Interpreter</title><link href="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html" rel="alternate" type="text/html" title="Run PyCharm IDE over SSH using Remote Host Interpreter" /><published>2020-01-27T00:00:00-05:00</published><updated>2020-01-27T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely</id><content type="html" xml:base="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html">&lt;div class=&quot;row justify-content-between&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-01-29T00:54:43-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Run PyCharm IDE over SSH using Remote Host Interpreter</title><link href="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html" rel="alternate" type="text/html" title="Run PyCharm IDE over SSH using Remote Host Interpreter" /><published>2020-01-27T00:00:00-05:00</published><updated>2020-01-27T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely</id><content type="html" xml:base="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html">&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
+  1. This tutorial is intended for &lt;b&gt;UofT ECE361&lt;/b&gt;, however, it is general enough for any other interested readers.&lt;br /&gt;
+  2. The purpose of this tutorial is to provide help to those who have problems with &lt;b&gt;VM's screen size&lt;/b&gt; or the &lt;b&gt;installed IDE&lt;/b&gt; and want to have a &lt;b&gt;full IDE&lt;/b&gt; to work with.&lt;br /&gt;
+  3. This workaround is completely &lt;b&gt;optional&lt;/b&gt; and does not affect your ability to do the labs, however, it might make it &lt;b&gt;easier&lt;/b&gt;.&lt;br /&gt;
+  4. There is a similar &lt;a target=&quot;_blank&quot; href=&quot;http://bit.ly/2Gyo6xC&quot;&gt;guide&lt;/a&gt; to setup SSH login for a VM which and uses vscode.
+
+&lt;/div&gt;
+
+&lt;div class=&quot;row justify-content-between&quot;&gt;
 	&lt;div class=&quot;col col-sm-8 mt-4 col-11&quot;&gt;
-		Assume you have installed a VM on the VirtualBox. We first see how we can access the VM terminal within the host machine. Then we will see how to run our python code using PyCharm IDE, which is installed on the host while codes and the interpreter are all located on the VM. 
+      Assume you have installed a VM on the VirtualBox. We first see how we can access the VM terminal within the host machine. Then we will see how to run our python code using PyCharm IDE, which is installed on the host while codes and the interpreter are all located on the VM. 
  &lt;/div&gt;
  &lt;div class=&quot;col col-sm-4 col-11 my-4 img&quot;&gt;
    &lt;center&gt;&lt;img style=&quot;width: 80%;&quot; alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/SSH-VM-over-NAT-PyCharm-SSH-interpreter.png&quot; /&gt;&lt;/center&gt;
@@ -43,9 +51,16 @@
 &lt;hr /&gt;
 
 &lt;h4&gt;Connect to the VM from the Host (your computer)&lt;/h4&gt;
-&lt;p&gt;Now you are able to open your terminal (if you work with windows you can try &lt;a href=&quot;https://www.putty.org&quot;&gt;putty&lt;/a&gt; and then connect to your VM. Thus, minimize the VM &lt;em&gt;(you do not have to work with the VM’s actual windows anymore!)&lt;/em&gt; and open a new terminal and enter:&lt;/p&gt;
+&lt;p&gt;Now you are able to open your terminal and connect to the VM from your machine (host). Thus, minimize the VM &lt;em&gt;(you do not have to work with the VM’s actual window anymore!)&lt;/em&gt; and continue using SSH.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ssh ubuntu@localhost &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 2229&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
+   If you work with Microsoft Windows you have to use &lt;a target=&quot;_blank&quot; href=&quot;https://www.putty.org&quot;&gt;putty&lt;/a&gt; and then connect to your VM. Look at &lt;a target=&quot;_blank&quot; href=&quot;http://bit.ly/2U4lzTL&quot;&gt;this instruction&lt;/a&gt; to see how you can get started with putty. Please note if you have followed the above instructions then the hostname is &lt;b&gt;localhost&lt;/b&gt;, the port is &lt;b&gt;2229&lt;/b&gt; and the &lt;b&gt;username&lt;/b&gt; and &lt;b&gt;password&lt;/b&gt; are the same as your VM.
+&lt;/div&gt;
+
+&lt;p&gt;Now open a new terminal &lt;em&gt;(either your Linux/MacOS terminal or putty)&lt;/em&gt; and connect to the VM:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;c&quot;&gt;# In MacOS/Linux terminal you can enter:&lt;/span&gt;
+ssh ubuntu@localhost &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 2229&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;div class=&quot;row justify-content-center&quot;&gt;
  &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
@@ -111,6 +126,11 @@
    &lt;center&gt;Fig 12: Path for python binary&lt;/center&gt;
  &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
+   Please note that the path for python virtual environment is not fixed for all labs. As you can see we entered the path which is witing &lt;b&gt;lab1&lt;/b&gt; directory. You may be given a completely different virtual environment for each lab and you have to create a new project and reconfigure the above step.
+&lt;/div&gt;
+
 &lt;p&gt;In the next step, make sure you have selected the &lt;strong&gt;Remote interpreter&lt;/strong&gt; like what you see in the picture below:&lt;/p&gt;
 &lt;div class=&quot;row justify-content-center&quot;&gt;
  &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
@@ -157,11 +177,11 @@
 &lt;div class=&quot;row justify-content-center&quot;&gt;
  &lt;div class=&quot;col col-sm-12 col-11 align-self-center my-4 img&quot;&gt;
    &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/pycharm-over-ssh/pycharm-ssh-python-interpreter-15.png&quot; /&gt;
-   &lt;center&gt;Fig 19: Reciver.py is ruuning and you can see its status on the terminal:&lt;/center&gt;
+   &lt;center&gt;Fig 19: Reciver.py is ruuning and you can see its status on the terminal&lt;/center&gt;
  &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Congratulations! You have successfully edited and executed your files on the remote VM!&lt;/p&gt;</content><author><name></name></author><summary type="html">Assume you have installed a VM on the VirtualBox. We first see how we can access the VM terminal within the host machine. Then we will see how to run our python code using PyCharm IDE, which is installed on the host while codes and the interpreter are all located on the VM.</summary></entry><entry><title type="html">Reverse SSH to Access Hosts Behind the NAT</title><link href="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html" rel="alternate" type="text/html" title="Reverse SSH to Access Hosts Behind the NAT" /><published>2020-01-17T00:00:00-05:00</published><updated>2020-01-17T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/17/reverse-ssh-linux</id><content type="html" xml:base="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html">&lt;p&gt;Assume you have a local machine behind NAT and there is a relay machine that has a public IP address. You want to have access to the local computer from anywhere.&lt;/p&gt;
+&lt;p&gt;Congratulations! You have successfully edited and executed your files on the remote VM!&lt;/p&gt;</content><author><name></name></author><summary type="html">1. This tutorial is intended for UofT ECE361, however, it is general enough for any other interested readers. 2. The purpose of this tutorial is to provide help to those who have problems with VM's screen size or the installed IDE and want to have a full IDE to work with. 3. This workaround is completely optional and does not affect your ability to do the labs, however, it might make it easier. 4. There is a similar guide to setup SSH login for a VM which and uses vscode.</summary></entry><entry><title type="html">Reverse SSH to Access Hosts Behind the NAT</title><link href="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html" rel="alternate" type="text/html" title="Reverse SSH to Access Hosts Behind the NAT" /><published>2020-01-17T00:00:00-05:00</published><updated>2020-01-17T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/17/reverse-ssh-linux</id><content type="html" xml:base="https://etesami.github.io/2020/01/17/reverse-ssh-linux.html">&lt;p&gt;Assume you have a local machine behind NAT and there is a relay machine that has a public IP address. You want to have access to the local computer from anywhere.&lt;/p&gt;
 
 &lt;div class=&quot;row justify-content-center&quot;&gt;
  &lt;div class=&quot;col col-sm-7 col-11 align-self-center my-4 img&quot;&gt;
