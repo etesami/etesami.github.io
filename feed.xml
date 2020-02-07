@@ -1,4 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-01-29T13:08:22-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Run PyCharm IDE over SSH using Remote Host Interpreter</title><link href="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html" rel="alternate" type="text/html" title="Run PyCharm IDE over SSH using Remote Host Interpreter" /><published>2020-01-27T00:00:00-05:00</published><updated>2020-01-27T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely</id><content type="html" xml:base="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html">&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-02-07T18:54:20-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Access to the SAVI using Web Portal</title><link href="https://etesami.github.io/2020/02/07/SAVI-tutorial-web-interface-UofT.html" rel="alternate" type="text/html" title="Access to the SAVI using Web Portal" /><published>2020-02-07T00:00:00-05:00</published><updated>2020-02-07T00:00:00-05:00</updated><id>https://etesami.github.io/2020/02/07/SAVI-tutorial-web-interface-UofT</id><content type="html" xml:base="https://etesami.github.io/2020/02/07/SAVI-tutorial-web-interface-UofT.html">&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
+  For more information on SAVI project please check their &lt;a href=&quot;https://www.savinetwork.ca&quot; target=&quot;_blank&quot;&gt;official page&lt;/a&gt;.
+&lt;/div&gt;
+&lt;p&gt;We assume that you have already got access to use SAVI and the focus of this tutorial is to show how to create your virtual machine using the web interface. Please note that access to the SAVI using terminal (client1) is more stable and robust.&lt;/p&gt;
+
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+&lt;h4&gt;Log in and Overview Page&lt;/h4&gt;
+&lt;p&gt;Log in to the SAVI using the &lt;a href=&quot;http://n-portal.savitestbed.ca&quot;&gt;portal&lt;/a&gt; by your credentials. Once you log in to the portal, you can change the &lt;strong&gt;region&lt;/strong&gt; and the &lt;strong&gt;project&lt;/strong&gt; you have access to. Currently, the best region to use is &lt;strong&gt;CORE&lt;/strong&gt; and &lt;strong&gt;CORE-2&lt;/strong&gt;. Some regions may not be available temporarily. If you encounter any errors when you log in, please change the region.&lt;/p&gt;
+
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/savi/savi-user-interface-portal-tutorial-01.png&quot; /&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h4&gt;Create a New Instance (VM)&lt;/h4&gt;
+&lt;p&gt;Click on the instance menu. You will see other instances which are for other people working on the same &lt;em&gt;project&lt;/em&gt;. Click on the &lt;strong&gt;Launch Instance&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
+  This is highly important that you not alter, modify or remove others' instances.
+&lt;/div&gt;
+
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/savi/savi-user-interface-portal-tutorial-02.png&quot; /&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h5&gt;Instance Information&lt;/h5&gt;
+&lt;p&gt;Enter a name and continue to the next step.&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/savi/savi-user-interface-portal-tutorial-03.png&quot; /&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;h5&gt;Source Image&lt;/h5&gt;
+&lt;p&gt;In the &lt;strong&gt;Source&lt;/strong&gt; menu, make sure you have selected &lt;strong&gt;image&lt;/strong&gt; as the boot source and &lt;strong&gt;not create a new volume&lt;/strong&gt;. Then select the appropriate image from the list.&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/savi/savi-user-interface-portal-tutorial-04.png&quot; /&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h5&gt;VM Flavor&lt;/h5&gt;
+&lt;p&gt;A flavour determines the amount of resources given to your VM. Select the right flavour based on your needs and available capacity of the project. You can see the current status of the used resources in the  &lt;strong&gt;Overview&lt;/strong&gt; page.&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/savi/savi-user-interface-portal-tutorial-05.png&quot; /&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h5&gt;VM Security Groups&lt;/h5&gt;
+&lt;p&gt;By default, there is limited access to your VM from outside (i.e. Internet). You have to create a security group that reflects the appropriate access (which port and protocol are open). You may select &lt;strong&gt;default&lt;/strong&gt; security groups but if you need specific ports to be opened, you have to create your security group.&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/savi/savi-user-interface-portal-tutorial-06.png&quot; /&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h5&gt;VM Key Pair&lt;/h5&gt;
+&lt;p&gt;Access to VMs using username and passwords is blocked when you first create a VM. You can change this later within the VM’s configuration. To enable access to it for the first time, you have to provide a public SSH key. If you do not have one already, you can create one at this page.&lt;/p&gt;
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+ &lt;div class=&quot;col col-sm-10 col-11 align-self-center my-4 img&quot;&gt;
+   &lt;img alt=&quot;SSH to VM over NAT, PyCharm with SSH interpreter&quot; src=&quot;/assets/images/savi/savi-user-interface-portal-tutorial-07.png&quot; /&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now click on &lt;strong&gt;Launch Instance&lt;/strong&gt; and your VM should boot and may take time for some seconds or minutes based on the image you have selected. Once your VM is booted, you can click on it and then using the tab &lt;strong&gt;console&lt;/strong&gt; access to the VM. Please note it is always preferred to use the &lt;em&gt;client1&lt;/em&gt; machine as the gateway.&lt;/p&gt;</content><author><name></name></author><summary type="html">For more information on SAVI project please check their official page. We assume that you have already got access to use SAVI and the focus of this tutorial is to show how to create your virtual machine using the web interface. Please note that access to the SAVI using terminal (client1) is more stable and robust.</summary></entry><entry><title type="html">Run PyCharm IDE over SSH using Remote Host Interpreter</title><link href="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html" rel="alternate" type="text/html" title="Run PyCharm IDE over SSH using Remote Host Interpreter" /><published>2020-01-27T00:00:00-05:00</published><updated>2020-01-27T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely</id><content type="html" xml:base="https://etesami.github.io/2020/01/27/run-pycharm-over-ssh-remotely.html">&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
   1. This tutorial is intended for &lt;b&gt;UofT ECE361&lt;/b&gt;, however, it is general enough for any other interested readers.&lt;br /&gt;
   2. The purpose of this tutorial is to provide help to those who have problems with &lt;b&gt;VM's screen size&lt;/b&gt; or the &lt;b&gt;installed IDE&lt;/b&gt; and want to have a &lt;b&gt;full IDE&lt;/b&gt; to work with.&lt;br /&gt;
   3. This workaround is completely &lt;b&gt;optional&lt;/b&gt; and does not affect your ability to do the labs, however, it might make it &lt;b&gt;easier&lt;/b&gt;.&lt;br /&gt;
