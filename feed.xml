@@ -1,4 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-02-07T18:57:33-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Access to the SAVI using Web Portal</title><link href="https://etesami.github.io/2020/02/07/SAVI-tutorial-web-interface-UofT.html" rel="alternate" type="text/html" title="Access to the SAVI using Web Portal" /><published>2020-02-07T00:00:00-05:00</published><updated>2020-02-07T00:00:00-05:00</updated><id>https://etesami.github.io/2020/02/07/SAVI-tutorial-web-interface-UofT</id><content type="html" xml:base="https://etesami.github.io/2020/02/07/SAVI-tutorial-web-interface-UofT.html">&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-02-20T14:19:36-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami Graduate PhD student Electrical and Computer Engineering University of Toronto Canada</subtitle><entry><title type="html">Migrate a Single WordPress site to Multisite WordPress System Using WP CLI</title><link href="https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site.html" rel="alternate" type="text/html" title="Migrate a Single WordPress site to Multisite WordPress System Using WP CLI" /><published>2020-02-18T00:00:00-05:00</published><updated>2020-02-18T00:00:00-05:00</updated><id>https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site</id><content type="html" xml:base="https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site.html">&lt;p&gt;Transferring a single WordPress site to a multisite WordPress system can become complicated, especially if you have a large website with many contents and plugins. Here we will see how we can manually transfer a single site using the &lt;a href=&quot;https://wp-cli.org&quot;&gt;WP command-line interface&lt;/a&gt;. In this document, we assume you have access to the servers hosting your websites and have created a &lt;a href=&quot;https://wordpress.org/support/article/create-a-network/&quot;&gt;multisite WordPress network&lt;/a&gt;, and you are ready to transfer your site.&lt;/p&gt;
+
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+&lt;h4&gt;Backup Eveything&lt;/h4&gt;
+&lt;p&gt;Backup your files and your database:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wp db &lt;span class=&quot;nt&quot;&gt;--dbuser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;db_username&amp;gt; &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;db.sql
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; /var/www &lt;span class=&quot;nt&quot;&gt;-zcvf&lt;/span&gt; files.tar.gz wordpress &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4&gt;Copy Files to New Multisite Folder&lt;/h4&gt;
+&lt;p&gt;When you create a new site in multisite WordPress, a corresponding folder for that is created. Assume the WordPress picks up the id &lt;strong&gt;8&lt;/strong&gt; for this site; thus its contents are stored in:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/path/to/multisite-root/wp-content/uploads/sites/8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Copy all uploaded contents to the new location:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rp&lt;/span&gt; /path/to/singlesite-root/wp-content/uploads/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+                     /path/to/multisite-root/wp-content/uploads/sites/8/&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4&gt;Find and Install Plugins&lt;/h4&gt;
+&lt;p&gt;Before you proceed, you have to install and activate all used plugins and themes in the multisite WordPress. To get the list of installed plugins in the single-site WordPress:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wp plugin list
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wp theme list
+&lt;span class=&quot;c&quot;&gt;# On the mutisite WordPress:&lt;/span&gt;
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wp plugin &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &amp;lt;name-of-plugin&amp;gt; &lt;span class=&quot;nt&quot;&gt;--activate-network&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4&gt;Export wp-options Table and Contents&lt;/h4&gt;
+&lt;p&gt;Plugins settings and configuration you have made are all stored in the &lt;strong&gt;wp-options&lt;/strong&gt; table. In a multisite environment, each site has its own set of tables. They are distinguished by getting a unique prefix. For instance, &lt;em&gt;wp-options&lt;/em&gt; for our target site is became &lt;strong&gt;wp-8-options&lt;/strong&gt;. We first export this table from single-site WordPress:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;c&quot;&gt;# To export wp-options table from database&lt;/span&gt;
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wp db &lt;span class=&quot;nt&quot;&gt;--dbuser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;root &lt;span class=&quot;nb&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--tables&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;wp_options ~/wordpress_options.sql 
+&lt;span class=&quot;c&quot;&gt;# To export all posts, pages, menus and etc. into a XML file:&lt;/span&gt;
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wp &lt;span class=&quot;nb&quot;&gt;export&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4&gt;Perform Modifications&lt;/h4&gt;
+&lt;p&gt;Now we have two files which we have to perform some filtering on them. In particular, we need to change the &lt;strong&gt;path to the contents&lt;/strong&gt; and the &lt;strong&gt;site URL&lt;/strong&gt; and &lt;strong&gt;home URL&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/wp_/wp_8_/g'&lt;/span&gt; ~/wordpress_options.sql &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Open the &lt;code class=&quot;highlighter-rouge&quot;&gt;~/wordpress_options.sql&lt;/code&gt; and change the &lt;strong&gt;site URL&lt;/strong&gt; and &lt;strong&gt;home URL&lt;/strong&gt; to multisite URL in the first line of &lt;strong&gt;INSERT TO&lt;/strong&gt; statement.&lt;/p&gt;
+
+&lt;p&gt;Once you finish that, it is time to change some paths on the XML file which contains the contents of your site:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/&amp;lt;old-url&amp;gt;/&amp;lt;new-url&amp;gt;/g'&lt;/span&gt; &amp;lt;xml-file&amp;gt;
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/http:\/wp-content/http:\/\/&amp;lt;new-url&amp;gt;\/wp-content/g'&lt;/span&gt; &amp;lt;xml-file&amp;gt;
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/wp-content\/uploads/wp-content\/uploads\/sites\/8/g'&lt;/span&gt; &amp;lt;xml-file&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;By now, we are almost done. We need to import the &lt;code class=&quot;highlighter-rouge&quot;&gt;~/wordpress_options.sql&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;xml-file&amp;gt;&lt;/code&gt; into the database.&lt;/p&gt;
+
+&lt;h4&gt;Import into Database&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wp db &lt;span class=&quot;nt&quot;&gt;--dbuser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;root import ~/wordpress_options.sql 
+&lt;span class=&quot;c&quot;&gt;# On the multisite WordPress perform:&lt;/span&gt;
+ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wp &lt;span class=&quot;nt&quot;&gt;--url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;desloges2.es.utoronto.ca import &lt;span class=&quot;nt&quot;&gt;--authors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;usermaps.csv &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check the output of the above commands for any failure during the import procedure. If you get some error, look for the corresponding attachments in the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;xml-file&amp;gt;&lt;/code&gt;. You probably need to correct the paths of a few items. The file &lt;code class=&quot;highlighter-rouge&quot;&gt;usermaps.csv&lt;/code&gt; provides a mapping from contents’ authors and the current existing users in the multisite WordPress. It looks like:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;usermaps.csv
+old_user_login,new_user_login
+old-username1,new-username1
+old-username2,new-username2&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4&gt;Final Step: Search and Replace&lt;/h4&gt;
+&lt;p&gt;Often times, you will see some images or links which still are using the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;old-url&amp;gt;‍‍‍‍‍‍‍&lt;/code&gt;. To check the whole database for any occurances:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ubuntu@VM1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wp search-replace &lt;span class=&quot;s1&quot;&gt;'&amp;lt;old-url&amp;gt;'&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&amp;lt;new-url&amp;gt;'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;new-url&amp;gt; &lt;span class=&quot;nt&quot;&gt;--precise&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Although this is a useful tool, however, you can also dump the whole database and replace whatever is needed as well.&lt;/p&gt;</content><author><name></name></author><summary type="html">Transferring a single WordPress site to a multisite WordPress system can become complicated, especially if you have a large website with many contents and plugins. Here we will see how we can manually transfer a single site using the WP command-line interface. In this document, we assume you have access to the servers hosting your websites and have created a multisite WordPress network, and you are ready to transfer your site.</summary></entry><entry><title type="html">Access to the SAVI using Web Portal</title><link href="https://etesami.github.io/2020/02/07/SAVI-tutorial-web-interface-UofT.html" rel="alternate" type="text/html" title="Access to the SAVI using Web Portal" /><published>2020-02-07T00:00:00-05:00</published><updated>2020-02-07T00:00:00-05:00</updated><id>https://etesami.github.io/2020/02/07/SAVI-tutorial-web-interface-UofT</id><content type="html" xml:base="https://etesami.github.io/2020/02/07/SAVI-tutorial-web-interface-UofT.html">&lt;div class=&quot;alert alert-warning&quot; role=&quot;alert&quot;&gt;
   For more information on SAVI project please check their &lt;a href=&quot;https://www.savinetwork.ca&quot; target=&quot;_blank&quot;&gt;official page&lt;/a&gt;.
 &lt;/div&gt;
 &lt;p&gt;We assume that you have already got access to use SAVI and the focus of this tutorial is to show how to create your virtual machine using the web interface. Please note that access to the SAVI using terminal (client1) is more stable and robust.&lt;/p&gt;
