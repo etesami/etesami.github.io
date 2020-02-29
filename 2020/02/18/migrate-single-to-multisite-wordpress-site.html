@@ -172,7 +172,7 @@ ubuntu@VM1:~<span class="nv">$ </span><span class="nb">sed</span> <span class="n
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">ubuntu@VM1:~<span class="nv">$ </span>wp db <span class="nt">--dbuser</span><span class="o">=</span>root import ~/wordpress_options.sql 
 <span class="c"># On the multisite WordPress perform:</span>
-ubuntu@VM1:~<span class="nv">$ </span>wp import <span class="nt">--authors</span><span class="o">=</span>usermaps.csv <span class="nt">--url</span><span class="o">=</span>desloges2.es.utoronto.ca &lt;xml-file&gt;</code></pre></figure>
+ubuntu@VM1:~<span class="nv">$ </span>wp import <span class="nt">--authors</span><span class="o">=</span>usermaps.csv <span class="nt">--url</span><span class="o">=</span>&lt;site-url&gt; &lt;xml-file&gt;</code></pre></figure>
 
 <p>Check the output of the above commands for any failure during the import procedure. If you get some error, look for the corresponding attachments in the <code class="highlighter-rouge">&lt;xml-file&gt;</code>. You probably need to correct the paths of a few items. The file <code class="highlighter-rouge">usermaps.csv</code> provides a mapping from contents’ authors and the current existing users in the multisite WordPress. It looks like:</p>
 
