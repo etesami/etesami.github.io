@@ -16,7 +16,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Ehsan Etesami | VNC Server in Ubuntu 16.04 and CentOS 7</title>
+  <title>Ehsan Etesami | VNC Server in Ubuntu 16.04, 18.04 and CentOS 7</title>
 
   <!-- Bootstrap core CSS -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,19 +27,19 @@
   <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico?">
 
   <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>VNC Server in Ubuntu 16.04 and CentOS 7 | Ehsan Etesami</title>
+<title>VNC Server in Ubuntu 16.04, 18.04 and CentOS 7 | Ehsan Etesami</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="VNC Server in Ubuntu 16.04 and CentOS 7" />
+<meta property="og:title" content="VNC Server in Ubuntu 16.04, 18.04 and CentOS 7" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we see how you can install and run a popular VNC server (TightVNC) on the Ubuntu 16:04 and CentOS 7 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications." />
-<meta property="og:description" content="If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we see how you can install and run a popular VNC server (TightVNC) on the Ubuntu 16:04 and CentOS 7 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications." />
+<meta name="description" content="If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we will install TightVNC on the Ubuntu 16.04 and CentOS 7 and VNC4Server on Ubuntu 18.04 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications." />
+<meta property="og:description" content="If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we will install TightVNC on the Ubuntu 16.04 and CentOS 7 and VNC4Server on Ubuntu 18.04 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications." />
 <link rel="canonical" href="https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html" />
 <meta property="og:url" content="https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html" />
 <meta property="og:site_name" content="Ehsan Etesami" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-01-10T00:00:00-05:00" />
 <script type="application/ld+json">
-{"headline":"VNC Server in Ubuntu 16.04 and CentOS 7","dateModified":"2020-01-10T00:00:00-05:00","datePublished":"2020-01-10T00:00:00-05:00","url":"https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html"},"description":"If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we see how you can install and run a popular VNC server (TightVNC) on the Ubuntu 16:04 and CentOS 7 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"VNC Server in Ubuntu 16.04, 18.04 and CentOS 7","url":"https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html","datePublished":"2020-01-10T00:00:00-05:00","dateModified":"2020-01-10T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html"},"description":"If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we will install TightVNC on the Ubuntu 16.04 and CentOS 7 and VNC4Server on Ubuntu 18.04 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications.","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -92,7 +92,7 @@
 
     <h1 class="my-4">
       
-      VNC Server in Ubuntu 16.04 and CentOS 7
+      VNC Server in Ubuntu 16.04, 18.04 and CentOS 7
     </h1>
 
     
@@ -103,7 +103,7 @@
   
     <li class="breadcrumb-item active"><a href="/blog.html">Blog</a></li>
   
-  <li class="breadcrumb-item active">VNC Server in Ubuntu 16.04 and CentOS 7</li>
+  <li class="breadcrumb-item active">VNC Server in Ubuntu 16.04, 18.04 and CentOS 7</li>
 </ol>
 
     
@@ -118,7 +118,7 @@
     <div class="my-3 text-muted">
       January 10, 2020
     </div>    
-    <div class="card-text"><p>If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we see how you can install and run a popular VNC server (TightVNC) on the Ubuntu 16:04 and CentOS 7 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications.</p>
+    <div class="card-text"><p>If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we will install <strong>TightVNC</strong> on the Ubuntu 16.04 and CentOS 7 and <strong>VNC4Server</strong> on Ubuntu 18.04 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications.</p>
 
 <div class="row justify-content-center">
  
@@ -160,12 +160,12 @@
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>yum groupinstall <span class="s2">"GNOME Desktop"</span></code></pre></figure>
 
-<h4>Install TightVNC Server</h4>
+<h4>TightVNC Server Installation and Configuration</h4>
 <p><a href="https://www.tightvnc.com">TightVNC server</a> is a popular VNC server. Install it on the CentOS by:</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>yum <span class="nb">install </span>tigervnc-server xorg-x11-fonts-Type1</code></pre></figure>
 
-<h4>VNC Server Configuration</h4>
+<h5>VNC Server Configuration</h5>
 <p>The next step is to create a config file for VNC server. In CentOS, we can copy the default config file and modify it to reflects the appropriate configuration.</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo cp</span> /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service</code></pre></figure>
@@ -190,7 +190,7 @@
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">systemctl daemon-reload
 systemctl <span class="nb">enable </span>vncserver@:1.service</code></pre></figure>
 
-<h4>Running the VNC Service</h4>
+<h5>Running the VNC Service</h5>
 <p>Now run the VNC server. If this is the first time then you have to provide the password for VNC server. This password will be used when you connect to the VNC sever.</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">vncserver</code></pre></figure>
@@ -202,7 +202,7 @@ systemctl <span class="nb">enable </span>vncserver@:1.service</code></pre></figu
 
 <hr />
 
-<h3>Ubuntu 16:04</h3>
+<h3>Ubuntu 16.04 and 18.04</h3>
 <h4>Install Graphical Environment</h4>
 
 <p>I prefer to install the graphical environment using a tool called <strong>tasksel</strong>. It used to install a collection of tools:</p>
@@ -220,12 +220,12 @@ systemctl <span class="nb">enable </span>vncserver@:1.service</code></pre></figu
  </div>
 </div>
 
-<h4>Install TightVNC Server</h4>
-<p>Install TightVNC server on the Ubuntu by:</p>
+<h4>VNC Server Installation and Configuration Ubuntu 16.04</h4>
+<p>Install <strong>TightVNC</strong> server on the Ubuntu by:</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>apt <span class="nb">install </span>tightvncserver</code></pre></figure>
 
-<h4>VNC Server Configuration</h4>
+<h5>VNC Server Configuration</h5>
 <p>In Ubuntu we have to create a file named as <strong>vncserver@.service</strong>:</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>vim /etc/systemd/system/vncserver@.service</code></pre></figure>
@@ -253,7 +253,7 @@ systemctl <span class="nb">enable </span>vncserver@:1.service</code></pre></figu
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>systemctl daemon-reload
 <span class="nb">sudo </span>systemctl <span class="nb">enable </span>vncserver@1</code></pre></figure>
 
-<h4>Running the VNC Service</h4>
+<h5>Running the VNC Service</h5>
 <p>Now we need to run the VNC server and If this is the first time then you have to provide the password for VNC server:</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">vncserver</code></pre></figure>
@@ -262,6 +262,38 @@ systemctl <span class="nb">enable </span>vncserver@:1.service</code></pre></figu
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">vncserver <span class="nt">-kill</span> :1
 <span class="nb">sudo </span>systemctl start vncserver@1</code></pre></figure>
+
+<h4>VNC Server Installation and Configuration Ubuntu 18.04</h4>
+<p>Install <strong>VNC4Server</strong> on the Ubuntu by:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>apt <span class="nb">install </span>vnc4serverer <span class="nt">-y</span></code></pre></figure>
+
+<h5>VNC Server Configuration</h5>
+<p>Configuration of vnc4server is quite easy. Run the vncserver for the first time to set the password:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">vncserver</code></pre></figure>
+
+<p>It is just enough to have the file <code class="highlighter-rouge">~/.vnc/xstartup</code> with following configuration and no change is neccessary:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c">#!/bin/sh                                                                                                                                               </span>
+xrdb <span class="nv">$HOME</span>/.Xresources
+xsetroot <span class="nt">-solid</span> grey
+<span class="c">#x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &amp;</span>
+<span class="c">#x-window-manager &amp;</span>
+<span class="c"># Fix to make GNOME work</span>
+<span class="nb">export </span><span class="nv">XKL_XMODMAP_DISABLE</span><span class="o">=</span>1
+/etc/X11/Xsession</code></pre></figure>
+
+<h5>Running the VNC Service</h5>
+<p>Now we run the VNC server:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">vncserver</code></pre></figure>
+
+<p>After running VNC server, kill the session that the previous command just created and run the service:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">vncserver <span class="nt">-kill</span> :1
+<span class="nv">SCREEN_SIZE</span><span class="o">=</span>1440x900
+vncserver <span class="nt">-geometry</span> <span class="nv">$SCREEN_SIZE</span> :1</code></pre></figure>
 
 <hr />
 

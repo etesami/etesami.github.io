@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-04-22T16:03:39-04:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami is a PhD student at the Electrical and Computer Engineering department of the University of Toronto, Canada.</subtitle><entry><title type="html">Migrate a Single WordPress site to Multisite WordPress System Using WP CLI</title><link href="https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site.html" rel="alternate" type="text/html" title="Migrate a Single WordPress site to Multisite WordPress System Using WP CLI" /><published>2020-02-18T00:00:00-05:00</published><updated>2020-02-18T00:00:00-05:00</updated><id>https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site</id><content type="html" xml:base="https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site.html">&lt;p&gt;Transferring a single WordPress site to a multisite WordPress system can become complicated, especially if you have a large website with many contents and plugins. Here we will see how we can manually transfer a single site using the &lt;a href=&quot;https://wp-cli.org&quot;&gt;WP command-line interface&lt;/a&gt;. In this document, we assume you have access to the servers hosting your websites and have created a &lt;a href=&quot;https://wordpress.org/support/article/create-a-network/&quot;&gt;multisite WordPress network&lt;/a&gt;, and you are ready to transfer your site.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-05-19T08:10:21-04:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami is a PhD student at the Electrical and Computer Engineering department of the University of Toronto, Canada.</subtitle><entry><title type="html">Migrate a Single WordPress site to Multisite WordPress System Using WP CLI</title><link href="https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site.html" rel="alternate" type="text/html" title="Migrate a Single WordPress site to Multisite WordPress System Using WP CLI" /><published>2020-02-18T00:00:00-05:00</published><updated>2020-02-18T00:00:00-05:00</updated><id>https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site</id><content type="html" xml:base="https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site.html">&lt;p&gt;Transferring a single WordPress site to a multisite WordPress system can become complicated, especially if you have a large website with many contents and plugins. Here we will see how we can manually transfer a single site using the &lt;a href=&quot;https://wp-cli.org&quot;&gt;WP command-line interface&lt;/a&gt;. In this document, we assume you have access to the servers hosting your websites and have created a &lt;a href=&quot;https://wordpress.org/support/article/create-a-network/&quot;&gt;multisite WordPress network&lt;/a&gt;, and you are ready to transfer your site.&lt;/p&gt;
 
 &lt;h2&gt;Getting Started&lt;/h2&gt;
 &lt;h4&gt;Backup Eveything&lt;/h4&gt;
@@ -340,7 +340,7 @@ ssh &lt;span class=&quot;nt&quot;&gt;-fN&lt;/span&gt; &lt;span class=&quot;nt&qu
 
 &lt;h4&gt;Connect to the Local Machine from the Relay Machine&lt;/h4&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ssh &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 10022 &amp;lt;local-username&amp;gt;@localhost&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="Networking" /><category term="Linux" /><summary type="html">Assume you have a local machine behind NAT and there is a relay machine that has a public IP address. You want to have access to the local computer from anywhere.</summary></entry><entry><title type="html">VNC Server in Ubuntu 16.04 and CentOS 7</title><link href="https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html" rel="alternate" type="text/html" title="VNC Server in Ubuntu 16.04 and CentOS 7" /><published>2020-01-10T00:00:00-05:00</published><updated>2020-01-10T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/10/vnc-ubuntu-centos</id><content type="html" xml:base="https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html">&lt;p&gt;If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we see how you can install and run a popular VNC server (TightVNC) on the Ubuntu 16:04 and CentOS 7 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications.&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;ssh &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 10022 &amp;lt;local-username&amp;gt;@localhost&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><category term="Networking" /><category term="Linux" /><summary type="html">Assume you have a local machine behind NAT and there is a relay machine that has a public IP address. You want to have access to the local computer from anywhere.</summary></entry><entry><title type="html">VNC Server in Ubuntu 16.04, 18.04 and CentOS 7</title><link href="https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html" rel="alternate" type="text/html" title="VNC Server in Ubuntu 16.04, 18.04 and CentOS 7" /><published>2020-01-10T00:00:00-05:00</published><updated>2020-01-10T00:00:00-05:00</updated><id>https://etesami.github.io/2020/01/10/vnc-ubuntu-centos</id><content type="html" xml:base="https://etesami.github.io/2020/01/10/vnc-ubuntu-centos.html">&lt;p&gt;If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we will install &lt;strong&gt;TightVNC&lt;/strong&gt; on the Ubuntu 16.04 and CentOS 7 and &lt;strong&gt;VNC4Server&lt;/strong&gt; on Ubuntu 18.04 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications.&lt;/p&gt;
 
 &lt;div class=&quot;row justify-content-center&quot;&gt;
  
@@ -382,12 +382,12 @@ ssh &lt;span class=&quot;nt&quot;&gt;-fN&lt;/span&gt; &lt;span class=&quot;nt&qu
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;yum groupinstall &lt;span class=&quot;s2&quot;&gt;&quot;GNOME Desktop&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4&gt;Install TightVNC Server&lt;/h4&gt;
+&lt;h4&gt;TightVNC Server Installation and Configuration&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.tightvnc.com&quot;&gt;TightVNC server&lt;/a&gt; is a popular VNC server. Install it on the CentOS by:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;tigervnc-server xorg-x11-fonts-Type1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4&gt;VNC Server Configuration&lt;/h4&gt;
+&lt;h5&gt;VNC Server Configuration&lt;/h5&gt;
 &lt;p&gt;The next step is to create a config file for VNC server. In CentOS, we can copy the default config file and modify it to reflects the appropriate configuration.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo cp&lt;/span&gt; /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -412,7 +412,7 @@ ssh &lt;span class=&quot;nt&quot;&gt;-fN&lt;/span&gt; &lt;span class=&quot;nt&qu
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;systemctl daemon-reload
 systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;vncserver@:1.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4&gt;Running the VNC Service&lt;/h4&gt;
+&lt;h5&gt;Running the VNC Service&lt;/h5&gt;
 &lt;p&gt;Now run the VNC server. If this is the first time then you have to provide the password for VNC server. This password will be used when you connect to the VNC sever.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vncserver&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -424,7 +424,7 @@ systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;vncserver@:1.serv
 
 &lt;hr /&gt;
 
-&lt;h3&gt;Ubuntu 16:04&lt;/h3&gt;
+&lt;h3&gt;Ubuntu 16.04 and 18.04&lt;/h3&gt;
 &lt;h4&gt;Install Graphical Environment&lt;/h4&gt;
 
 &lt;p&gt;I prefer to install the graphical environment using a tool called &lt;strong&gt;tasksel&lt;/strong&gt;. It used to install a collection of tools:&lt;/p&gt;
@@ -442,12 +442,12 @@ systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;vncserver@:1.serv
  &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;h4&gt;Install TightVNC Server&lt;/h4&gt;
-&lt;p&gt;Install TightVNC server on the Ubuntu by:&lt;/p&gt;
+&lt;h4&gt;VNC Server Installation and Configuration Ubuntu 16.04&lt;/h4&gt;
+&lt;p&gt;Install &lt;strong&gt;TightVNC&lt;/strong&gt; server on the Ubuntu by:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;tightvncserver&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4&gt;VNC Server Configuration&lt;/h4&gt;
+&lt;h5&gt;VNC Server Configuration&lt;/h5&gt;
 &lt;p&gt;In Ubuntu we have to create a file named as &lt;strong&gt;vncserver@.service&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/systemd/system/vncserver@.service&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -475,7 +475,7 @@ systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;vncserver@:1.serv
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl daemon-reload
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;vncserver@1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h4&gt;Running the VNC Service&lt;/h4&gt;
+&lt;h5&gt;Running the VNC Service&lt;/h5&gt;
 &lt;p&gt;Now we need to run the VNC server and If this is the first time then you have to provide the password for VNC server:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vncserver&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -484,6 +484,38 @@ systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;vncserver@:1.serv
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vncserver &lt;span class=&quot;nt&quot;&gt;-kill&lt;/span&gt; :1
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl start vncserver@1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4&gt;VNC Server Installation and Configuration Ubuntu 18.04&lt;/h4&gt;
+&lt;p&gt;Install &lt;strong&gt;VNC4Server&lt;/strong&gt; on the Ubuntu by:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;vnc4serverer &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h5&gt;VNC Server Configuration&lt;/h5&gt;
+&lt;p&gt;Configuration of vnc4server is quite easy. Run the vncserver for the first time to set the password:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vncserver&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;It is just enough to have the file &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.vnc/xstartup&lt;/code&gt; with following configuration and no change is neccessary:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh                                                                                                                                               &lt;/span&gt;
+xrdb &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.Xresources
+xsetroot &lt;span class=&quot;nt&quot;&gt;-solid&lt;/span&gt; grey
+&lt;span class=&quot;c&quot;&gt;#x-terminal-emulator -geometry 80x24+10+10 -ls -title &quot;$VNCDESKTOP Desktop&quot; &amp;amp;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#x-window-manager &amp;amp;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Fix to make GNOME work&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XKL_XMODMAP_DISABLE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
+/etc/X11/Xsession&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h5&gt;Running the VNC Service&lt;/h5&gt;
+&lt;p&gt;Now we run the VNC server:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vncserver&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;After running VNC server, kill the session that the previous command just created and run the service:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vncserver &lt;span class=&quot;nt&quot;&gt;-kill&lt;/span&gt; :1
+&lt;span class=&quot;nv&quot;&gt;SCREEN_SIZE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1440x900
+vncserver &lt;span class=&quot;nt&quot;&gt;-geometry&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$SCREEN_SIZE&lt;/span&gt; :1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;hr /&gt;
 
@@ -501,7 +533,7 @@ systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;vncserver@:1.serv
   &lt;li&gt;&lt;a href=&quot;https://www.howopensource.com/2011/08/vnc-error-unable-to-connect-to-host-no-route-to-host-113-solved/&quot;&gt;“Unable to connect to host: No route to host” Allow traffic to pass through Iptables in CentOS&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://askubuntu.com/questions/943750&quot;&gt;Differrent graphical environments for Linux&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.linuxtechi.com/install-configure-vnc-server-centos-7-rhel-7/&quot;&gt;A Good article to install VNC server from begging to the end on CentOS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="Linux" /><summary type="html">If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we see how you can install and run a popular VNC server (TightVNC) on the Ubuntu 16:04 and CentOS 7 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications.</summary></entry><entry><title type="html">Create an Overlay Network in Ubuntu using Open vSwitch (OVS)</title><link href="https://etesami.github.io/2019/10/14/overlay-networks-in-ubuntu.html" rel="alternate" type="text/html" title="Create an Overlay Network in Ubuntu using Open vSwitch (OVS)" /><published>2019-10-14T00:00:00-04:00</published><updated>2019-10-14T00:00:00-04:00</updated><id>https://etesami.github.io/2019/10/14/overlay-networks-in-ubuntu</id><content type="html" xml:base="https://etesami.github.io/2019/10/14/overlay-networks-in-ubuntu.html">&lt;p&gt;By creating an overlay network, you can have a new interface attached to your system with any arbitrary IP that you would like. You can also join other machines to this network and have connectivity between all of them using the overlay IPs.
+&lt;/ul&gt;</content><author><name></name></author><category term="Linux" /><summary type="html">If you work with a server hosted in the cloud environment, most of the time, you may find it very useful to have graphical access to the server. Here, we will install TightVNC on the Ubuntu 16.04 and CentOS 7 and VNC4Server on Ubuntu 18.04 and then connect to it. In order to access the operating system graphically, a graphical environment should be installed on the OS. The most used ones are LXDE (fig 1), Mate (fig 2), Xfce (fig 3), KDE (fig 4) and Gnome (fig 5). Running each one requires different hardware specifications.</summary></entry><entry><title type="html">Create an Overlay Network in Ubuntu using Open vSwitch (OVS)</title><link href="https://etesami.github.io/2019/10/14/overlay-networks-in-ubuntu.html" rel="alternate" type="text/html" title="Create an Overlay Network in Ubuntu using Open vSwitch (OVS)" /><published>2019-10-14T00:00:00-04:00</published><updated>2019-10-14T00:00:00-04:00</updated><id>https://etesami.github.io/2019/10/14/overlay-networks-in-ubuntu</id><content type="html" xml:base="https://etesami.github.io/2019/10/14/overlay-networks-in-ubuntu.html">&lt;p&gt;By creating an overlay network, you can have a new interface attached to your system with any arbitrary IP that you would like. You can also join other machines to this network and have connectivity between all of them using the overlay IPs.
 OVS is a multilayer virtual switch designed to enable massive network automation through programmatic extension. To create an overlay network, we need to create an &lt;strong&gt;internal interface&lt;/strong&gt;. The internal interface is used because you may lose your connectivity when trying to build a bridge and connect your physical interfaces to it; since they would not get an IP (switches work in &lt;strong&gt;layer 2&lt;/strong&gt;). Instead, the internal interface obtains an IP address, and the host would be accessible. Here, we create an overlay network between three VMs running on Virtual Box.&lt;/p&gt;
 
 &lt;h2&gt;Getting Started&lt;/h2&gt;
