@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148462557-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-148462557-1');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Ehsan Etesami | Install Ubuntu 20.04 via PXE UEFI Setup</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/syntax.css">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico?">
+
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Install Ubuntu 20.04 via PXE UEFI Setup | Ehsan Etesami</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Install Ubuntu 20.04 via PXE UEFI Setup" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="By following this tutorial, you will boot up Ubuntu 20.04 via an image hosted in another machine in your local network. For this purpose, you need to install and configure a DHCP, TFTP and Apache servers. In this tutorial, we will install all services on one machine. This tutorial is mostly based on this video. However, there are a few changes to use Ubuntu 20.04 instead." />
+<meta property="og:description" content="By following this tutorial, you will boot up Ubuntu 20.04 via an image hosted in another machine in your local network. For this purpose, you need to install and configure a DHCP, TFTP and Apache servers. In this tutorial, we will install all services on one machine. This tutorial is mostly based on this video. However, there are a few changes to use Ubuntu 20.04 instead." />
+<link rel="canonical" href="https://etesami.github.io/2021/01/03/install-ubuntu-20-04-uefi-pxe.html" />
+<meta property="og:url" content="https://etesami.github.io/2021/01/03/install-ubuntu-20-04-uefi-pxe.html" />
+<meta property="og:site_name" content="Ehsan Etesami" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-03T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"Install Ubuntu 20.04 via PXE UEFI Setup","dateModified":"2021-01-03T00:00:00-05:00","datePublished":"2021-01-03T00:00:00-05:00","url":"https://etesami.github.io/2021/01/03/install-ubuntu-20-04-uefi-pxe.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://etesami.github.io/2021/01/03/install-ubuntu-20-04-uefi-pxe.html"},"description":"By following this tutorial, you will boot up Ubuntu 20.04 via an image hosted in another machine in your local network. For this purpose, you need to install and configure a DHCP, TFTP and Apache servers. In this tutorial, we will install all services on one machine. This tutorial is mostly based on this video. However, there are a few changes to use Ubuntu 20.04 instead.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light fixed-top bg-bluelight">
+  <div class="container">
+    <a class="navbar-brand" href="/index.html">
+       Ehsan Etesami
+      
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        
+          <li class="nav-item">
+            <a class="nav-link  " href="/"> Home</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link  " href="/education.html"> Education</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link  " href="/publication.html"> Publication</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link  " href="/teaching.html"> Teaching</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link  " href="/blog.html"> Blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Header Slide -->
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <h1 class="my-4">
+      
+      Install Ubuntu 20.04 via PXE UEFI Setup
+    </h1>
+
+    
+      <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/index.html">Home</a>
+  </li>
+  
+    <li class="breadcrumb-item active"><a href="/blog.html">Blog</a></li>
+  
+  <li class="breadcrumb-item active">Install Ubuntu 20.04 via PXE UEFI Setup</li>
+</ol>
+
+    
+    
+    <hr>
+
+    <div class="row justify-content-lg-center">
+
+  <!-- Blog Entries Column -->
+  <div class="col-lg-10 col-12">
+    <!-- Blog Post -->
+    <div class="my-3 text-muted">
+      January 03, 2021
+    </div>    
+    <div class="card-text"><p>By following this tutorial, you will boot up Ubuntu 20.04 via an image hosted in another machine in your local network. For this purpose, you need to install and configure a DHCP, TFTP and Apache servers. In this tutorial, we will install all services on one machine.</p>
+<div class="alert alert-info" role="alert">
+This tutorial is mostly based on <a target="_blank" href="https://youtu.be/U3RC20ANomk">this video</a>. However, there are a few changes to use Ubuntu 20.04 instead.
+</div>
+
+<h2>Getting Started</h2>
+
+<h4>Installing Packages</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>tftpd-hpa isc-dhcp-server syslinux-efi syslinux-common apache2
+</code></pre></div></div>
+
+<h4>Configuring TFTP server and Copying Required Files</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo mkdir</span> /tftpboot
+
+<span class="nb">sudo cp</span> /usr/lib/syslinux/modules/efi64/<span class="o">{</span>ldlinux.e64,libutil.c32,menu.c32<span class="o">}</span> /tftpboot
+<span class="nb">sudo cp</span> /usr/lib/SYSLINUX.EFI/efi64/syslinux.efi /tftpboot 
+
+<span class="nb">sudo mkdir</span> /tftpboot/pxelinux.cfg
+<span class="nb">sudo touch</span> /tftpboot/pxelinux.cfg/default
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/default/tftpd-hpa
+</code></pre></div></div>
+<p>Now make sure TFTP configuration file looks like below (<code class="highlighter-rouge">TFTP_DIRECTORY</code> should be the <code class="highlighter-rouge">/tftpboot</code> directory you created before):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/default/tftpd-hpa</span>
+
+<span class="nv">TFTP_USERNAME</span><span class="o">=</span><span class="s2">"tftp"</span>
+<span class="nv">TFTP_DIRECTORY</span><span class="o">=</span><span class="s2">"/tftpboot"</span>
+<span class="nv">TFTP_ADDRESS</span><span class="o">=</span><span class="s2">":69"</span>
+<span class="nv">TFTP_OPTIONS</span><span class="o">=</span><span class="s2">"--secure"</span>
+</code></pre></div></div>
+<p>Also make sure the UDP port 69 is accessible through your local network, then:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart tftpd-hpa
+</code></pre></div></div>
+<h4>Configuring DHCP Server</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/dhcp/dhcpd.conf 
+</code></pre></div></div>
+<p>Specify the subnet for the allocation of initial IPs to the machines:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Specify the nameservers</span>
+option domain-name-servers 8.8.8.8, 8.8.4.4<span class="p">;</span>
+
+<span class="c"># Uncomment this line if you are using your local network</span>
+authoritative<span class="p">;</span>
+
+<span class="c"># Configure your subnet</span>
+subnet 10.10.30.0 netmask 255.255.255.0 <span class="o">{</span>
+    range 10.10.30.200 10.10.30.240<span class="p">;</span>
+    option routers 10.10.30.10<span class="p">;</span>
+    filename <span class="s2">"pxelinux.0"</span><span class="p">;</span>
+    next-server x.x.x.x<span class="p">;</span>
+    option bootfile-name <span class="s2">"syslinux.efi"</span><span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Replace the IP address of the TFTP server with <code class="highlighter-rouge">x.x.x.x</code> This is the machine’s address after getting the IP address from DHCP server to boot Ubuntu. Since we will bring up all these servers in one machine, this should be the IP address of the current machine.</p>
+
+<p>Now find your MAC address of the interface that the DHCP server should listen to (instead of <code class="highlighter-rouge">eno2</code>, use your interface name):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ifconfig eno2 | <span class="nb">grep </span>ether
+</code></pre></div></div>
+<p>Open the file below and enter the MAC address in <code class="highlighter-rouge">INTERFACESv4</code> field.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /etc/default/isc-dhcp-server
+</code></pre></div></div>
+<p>And finally:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart isc-dhcp-server
+</code></pre></div></div>
+
+<h4>Configuring Apache Server</h4>
+<p>Download the latest version of Ubuntu 20.04 and then:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mount <span class="nt">-o</span> ro ubuntu-20.04-live-server-amd64.iso /mnt
+<span class="nb">cp</span> /mnt/casper/initrd /tftpboot
+<span class="nb">cp</span> /mnt/casper/vmlinuz /tftpboot
+
+<span class="nb">sudo mkdir</span> <span class="nt">-p</span> /var/www/html/ubuntu2004
+<span class="nb">cp </span>ubuntu-20.04-live-server-amd64.iso /var/www/html/ubuntu2004
+</code></pre></div></div>
+
+<p>Now edit the file <code class="highlighter-rouge">/tftpboot/pxelinux.cfg/default</code> as below to point to the address of the Ubuntu ISO:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>vim /tftpboot/pxelinux.cfg/default
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DEFAULT <span class="nb">install
+ </span>LABEL <span class="nb">install
+ </span>KERNEL vmlinuz
+ INITRD initrd
+ APPEND <span class="nv">root</span><span class="o">=</span>/dev/ram0 <span class="nv">ramdisk_size</span><span class="o">=</span>1500000 <span class="nv">ip</span><span class="o">=</span>dhcp <span class="nv">url</span><span class="o">=</span>http://&lt;IP-ADDR&gt;/ubuntu2004/ubuntu-20.04.1-live-server-amd64.iso
+</code></pre></div></div>
+<p>Instead of <code class="highlighter-rouge">IP-ADDR</code> simply provide the IP address of the current machine, generally this should be address of the Apache server which hosts the Ubuntu ISO.</p>
+
+<h4>Testing</h4>
+<p>Turn on another machine in your local network and try boot up using PXE network.</p>
+</div> 
+    <hr>
+    <div class="categories">
+    	
+			  <span class="badge badge-info">Ubuntu</span>
+			
+			  <span class="badge badge-info">Networking</span>
+			
+			  <span class="badge badge-info">Linux</span>
+			
+		</div>
+		<div class="more-links mt-3">
+		
+			
+			  
+		  
+
+		  
+		  	
+		  
+		  	
+		  
+		  	
+		  		
+		  			
+					  <h5 class="mb-1">Want to read more?</h5>
+					  Check out these pages:
+						<ul class="mt-2">
+		  		
+		  		<li><a href="/2020/02/07/SAVI-tutorial-web-interface-UofT.html">Access to the SAVI using Web Portal</a></li>
+		  	
+		  
+		  	
+		  		
+		  		<li><a href="/2020/01/27/run-pycharm-over-ssh-remotely.html">Run PyCharm IDE over SSH using Remote Host Interpreter</a></li>
+		  	
+		  
+		  	
+		  		
+		  		<li><a href="/2020/01/17/reverse-ssh-linux.html">Reverse SSH to Access Hosts Behind the NAT</a></li>
+		  	
+		  
+		  	
+		  		
+		  		<li><a href="/2020/01/10/vnc-ubuntu-centos.html">VNC Server in Ubuntu 16.04, 18.04 and CentOS 7</a></li>
+		  	
+		  
+		  	
+		  		
+		  		<li><a href="/2019/10/14/overlay-networks-in-ubuntu.html">Create an Overlay Network in Ubuntu using Open vSwitch (OVS)</a></li>
+		  	
+		  
+		  
+		  	</ul>
+		  
+
+    </div> 
+  </div>
+
+</div>
+<!-- /.row -->
+
+
+  </div>
+  <!-- /.container -->
+
+  
+  <!-- Footer -->
+<footer class="py-3 bg-bluelight">
+  <div class="container">
+    <p class="m-0 text-center text-black txt-small">Copyright &copy; 2021, Ehsan Etesami</p>
+  </div>
+  <!-- /.container -->
+</footer>
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

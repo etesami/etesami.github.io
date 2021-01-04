@@ -1,4 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2020-05-19T08:10:21-04:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami is a PhD student at the Electrical and Computer Engineering department of the University of Toronto, Canada.</subtitle><entry><title type="html">Migrate a Single WordPress site to Multisite WordPress System Using WP CLI</title><link href="https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site.html" rel="alternate" type="text/html" title="Migrate a Single WordPress site to Multisite WordPress System Using WP CLI" /><published>2020-02-18T00:00:00-05:00</published><updated>2020-02-18T00:00:00-05:00</updated><id>https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site</id><content type="html" xml:base="https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site.html">&lt;p&gt;Transferring a single WordPress site to a multisite WordPress system can become complicated, especially if you have a large website with many contents and plugins. Here we will see how we can manually transfer a single site using the &lt;a href=&quot;https://wp-cli.org&quot;&gt;WP command-line interface&lt;/a&gt;. In this document, we assume you have access to the servers hosting your websites and have created a &lt;a href=&quot;https://wordpress.org/support/article/create-a-network/&quot;&gt;multisite WordPress network&lt;/a&gt;, and you are ready to transfer your site.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://etesami.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://etesami.github.io/" rel="alternate" type="text/html" /><updated>2021-01-03T23:07:33-05:00</updated><id>https://etesami.github.io/feed.xml</id><title type="html">Ehsan Etesami</title><subtitle>Ehsan Etesami is a PhD student at the Electrical and Computer Engineering department of the University of Toronto, Canada.</subtitle><entry><title type="html">Install Ubuntu 20.04 via PXE UEFI Setup</title><link href="https://etesami.github.io/2021/01/03/install-ubuntu-20-04-uefi-pxe.html" rel="alternate" type="text/html" title="Install Ubuntu 20.04 via PXE UEFI Setup" /><published>2021-01-03T00:00:00-05:00</published><updated>2021-01-03T00:00:00-05:00</updated><id>https://etesami.github.io/2021/01/03/install-ubuntu-20-04-uefi-pxe</id><content type="html" xml:base="https://etesami.github.io/2021/01/03/install-ubuntu-20-04-uefi-pxe.html">&lt;p&gt;By following this tutorial, you will boot up Ubuntu 20.04 via an image hosted in another machine in your local network. For this purpose, you need to install and configure a DHCP, TFTP and Apache servers. In this tutorial, we will install all services on one machine.&lt;/p&gt;
+&lt;div class=&quot;alert alert-info&quot; role=&quot;alert&quot;&gt;
+This tutorial is mostly based on &lt;a target=&quot;_blank&quot; href=&quot;https://youtu.be/U3RC20ANomk&quot;&gt;this video&lt;/a&gt;. However, there are a few changes to use Ubuntu 20.04 instead.
+&lt;/div&gt;
+
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+
+&lt;h4&gt;Installing Packages&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;tftpd-hpa isc-dhcp-server syslinux-efi syslinux-common apache2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4&gt;Configuring TFTP server and Copying Required Files&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; /tftpboot
+
+&lt;span class=&quot;nb&quot;&gt;sudo cp&lt;/span&gt; /usr/lib/syslinux/modules/efi64/&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;ldlinux.e64,libutil.c32,menu.c32&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; /tftpboot
+&lt;span class=&quot;nb&quot;&gt;sudo cp&lt;/span&gt; /usr/lib/SYSLINUX.EFI/efi64/syslinux.efi /tftpboot 
+
+&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; /tftpboot/pxelinux.cfg
+&lt;span class=&quot;nb&quot;&gt;sudo touch&lt;/span&gt; /tftpboot/pxelinux.cfg/default
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/default/tftpd-hpa
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Now make sure TFTP configuration file looks like below (&lt;code class=&quot;highlighter-rouge&quot;&gt;TFTP_DIRECTORY&lt;/code&gt; should be the &lt;code class=&quot;highlighter-rouge&quot;&gt;/tftpboot&lt;/code&gt; directory you created before):&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# /etc/default/tftpd-hpa&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;TFTP_USERNAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tftp&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;TFTP_DIRECTORY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/tftpboot&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;TFTP_ADDRESS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;:69&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;TFTP_OPTIONS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;--secure&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Also make sure the UDP port 69 is accessible through your local network, then:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl restart tftpd-hpa
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4&gt;Configuring DHCP Server&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/dhcp/dhcpd.conf 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Specify the subnet for the allocation of initial IPs to the machines:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Specify the nameservers&lt;/span&gt;
+option domain-name-servers 8.8.8.8, 8.8.4.4&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Uncomment this line if you are using your local network&lt;/span&gt;
+authoritative&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Configure your subnet&lt;/span&gt;
+subnet 10.10.30.0 netmask 255.255.255.0 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    range 10.10.30.200 10.10.30.240&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    option routers 10.10.30.10&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    filename &lt;span class=&quot;s2&quot;&gt;&quot;pxelinux.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    next-server x.x.x.x&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    option bootfile-name &lt;span class=&quot;s2&quot;&gt;&quot;syslinux.efi&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Replace the IP address of the TFTP server with &lt;code class=&quot;highlighter-rouge&quot;&gt;x.x.x.x&lt;/code&gt; This is the machine’s address after getting the IP address from DHCP server to boot Ubuntu. Since we will bring up all these servers in one machine, this should be the IP address of the current machine.&lt;/p&gt;
+
+&lt;p&gt;Now find your MAC address of the interface that the DHCP server should listen to (instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;eno2&lt;/code&gt;, use your interface name):&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ifconfig eno2 | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;ether
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Open the file below and enter the MAC address in &lt;code class=&quot;highlighter-rouge&quot;&gt;INTERFACESv4&lt;/code&gt; field.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/default/isc-dhcp-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;And finally:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl restart isc-dhcp-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4&gt;Configuring Apache Server&lt;/h4&gt;
+&lt;p&gt;Download the latest version of Ubuntu 20.04 and then:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mount &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; ro ubuntu-20.04-live-server-amd64.iso /mnt
+&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /mnt/casper/initrd /tftpboot
+&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /mnt/casper/vmlinuz /tftpboot
+
+&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /var/www/html/ubuntu2004
+&lt;span class=&quot;nb&quot;&gt;cp &lt;/span&gt;ubuntu-20.04-live-server-amd64.iso /var/www/html/ubuntu2004
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now edit the file &lt;code class=&quot;highlighter-rouge&quot;&gt;/tftpboot/pxelinux.cfg/default&lt;/code&gt; as below to point to the address of the Ubuntu ISO:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /tftpboot/pxelinux.cfg/default
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DEFAULT &lt;span class=&quot;nb&quot;&gt;install
+ &lt;/span&gt;LABEL &lt;span class=&quot;nb&quot;&gt;install
+ &lt;/span&gt;KERNEL vmlinuz
+ INITRD initrd
+ APPEND &lt;span class=&quot;nv&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/ram0 &lt;span class=&quot;nv&quot;&gt;ramdisk_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1500000 &lt;span class=&quot;nv&quot;&gt;ip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;dhcp &lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;http://&amp;lt;IP-ADDR&amp;gt;/ubuntu2004/ubuntu-20.04.1-live-server-amd64.iso
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;IP-ADDR&lt;/code&gt; simply provide the IP address of the current machine, generally this should be address of the Apache server which hosts the Ubuntu ISO.&lt;/p&gt;
+
+&lt;h4&gt;Testing&lt;/h4&gt;
+&lt;p&gt;Turn on another machine in your local network and try boot up using PXE network.&lt;/p&gt;</content><author><name></name></author><category term="Ubuntu" /><category term="Networking" /><category term="Linux" /><summary type="html">By following this tutorial, you will boot up Ubuntu 20.04 via an image hosted in another machine in your local network. For this purpose, you need to install and configure a DHCP, TFTP and Apache servers. In this tutorial, we will install all services on one machine. This tutorial is mostly based on this video. However, there are a few changes to use Ubuntu 20.04 instead.</summary></entry><entry><title type="html">Migrate a Single WordPress site to Multisite WordPress System Using WP CLI</title><link href="https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site.html" rel="alternate" type="text/html" title="Migrate a Single WordPress site to Multisite WordPress System Using WP CLI" /><published>2020-02-18T00:00:00-05:00</published><updated>2020-02-18T00:00:00-05:00</updated><id>https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site</id><content type="html" xml:base="https://etesami.github.io/2020/02/18/migrate-single-to-multisite-wordpress-site.html">&lt;p&gt;Transferring a single WordPress site to a multisite WordPress system can become complicated, especially if you have a large website with many contents and plugins. Here we will see how we can manually transfer a single site using the &lt;a href=&quot;https://wp-cli.org&quot;&gt;WP command-line interface&lt;/a&gt;. In this document, we assume you have access to the servers hosting your websites and have created a &lt;a href=&quot;https://wordpress.org/support/article/create-a-network/&quot;&gt;multisite WordPress network&lt;/a&gt;, and you are ready to transfer your site.&lt;/p&gt;
 
 &lt;h2&gt;Getting Started&lt;/h2&gt;
 &lt;h4&gt;Backup Eveything&lt;/h4&gt;
