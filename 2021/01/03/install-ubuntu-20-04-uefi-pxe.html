@@ -171,7 +171,7 @@ subnet 10.10.30.0 netmask 255.255.255.0 <span class="o">{</span>
     option bootfile-name <span class="s2">"syslinux.efi"</span><span class="p">;</span>
 <span class="o">}</span>
 </code></pre></div></div>
-<p>Replace the IP address of the TFTP server with <code class="highlighter-rouge">x.x.x.x</code> This is the machine’s address after getting the IP address from DHCP server to boot Ubuntu. Since we will bring up all these servers in one machine, this should be the IP address of the current machine.</p>
+<p>Replace the IP address of the TFTP server with <code class="highlighter-rouge">x.x.x.x</code>. Since we will bring up all these servers in one machine, this should be the IP address of the current machine.</p>
 
 <p>Now find your MAC address of the interface that the DHCP server should listen to (instead of <code class="highlighter-rouge">eno2</code>, use your interface name):</p>
 
